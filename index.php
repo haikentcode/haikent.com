@@ -45,7 +45,25 @@
         <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-7121609379622761",
+    enable_page_level_ads: true
+  });
+</script>
+
 </head>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-7121609379622761",
+    enable_page_level_ads: true
+  });
+console.log("haikent");
+</script>
 
 <body>
     <div class="container">
@@ -66,6 +84,7 @@
                         </div>
                         <div class="col-sm-5 text-right dl-share">
                             <!-- AddToAny BEGIN -->
+                            
                             <a class="a2a_dd btn btn-default" href=""><span class="fa fa-share "></span> Share</a>
                             <script type="text/javascript">
                                 var a2a_config = a2a_config || {};
@@ -76,7 +95,7 @@
                             <script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
                             <!-- AddToAny END -->
 
-                            <a class="btn btn-success" href=""><span class="fa fa-download"></span> Download</a>
+                            <a class="btn btn-success" href="/haikent.pdf"><span class="fa fa-download"></span> Download Resume</a>
                         </div>
                     </div>
                     <h2>Full Stack Software Developer</h2>
@@ -88,11 +107,11 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <ul class="list-unstyled">
-                            <li><a href="http://www.haikent.com"><span class="social fa fa-home"></span>haikent.com</a>
+                            <li><a href="https://haikent.blogspot.in/"><span class="social fa fa-book"></span>blogs</a>
                             </li>
-                            <li><a href=""><span class="social fa fa-skype"></span>+91 8591216563</a>
+                            <li><a href=""><span class="social fa fa-skype"></span>haikenthk</a>
                             </li>
-                            <li><a href="mailto:support@evenfly.com"><span class="social fa fa-envelope-o"></span>hiteshnitj16@gmail.com</a>
+                            <li><a href="mailto:haikenthk@gmail.com"><span class="social fa fa-envelope-o"></span>haikenthk@gmail.com</a>
                             </li>
                         </ul>
                     </div><!-- social 1st col end-->
@@ -110,9 +129,9 @@
 
                     <div class="col-sm-4">
                         <ul class="list-unstyled">
-                            <li><a href="https://www.hackerrank.com/haikent"><span class="social fa fa-hackerrank"></span>Hackerrank</a>
+                            <li><a href="https://www.hackerrank.com/haikent"><span class="social fa fa-keyboard-o"></span>Hackerrank</a>
                             </li>
-                            <li><a href="https://www.hackerearth.com/@haikent.al"><span class="social fa fa-hackerearth"></span>Hackerearth</a>
+                            <li><a href="https://www.youtube.com/c/hiteshkumar_haikent"><span class="social fa fa-youtube"></span>YouTube</a>
                             </li>
                             <li><a href="https://github.com/haikentcode"><span class="social fa fa-github"></span>Github</a>
                             </li>
@@ -135,16 +154,16 @@
 
                 <div class="col-sm-11">
                     <h3>Personal statement </h3>
-                    <p>Hi, I am Hitesh from Rajasthan (India).I'm an undergraduate studying Computer Science and Engineering at National Institute Of Technology Jalandhar.
-                      I expect to graduate with a Bachelors degree in May 2016.
+                    <p>Hi, I am Hitesh from Rajasthan (India).I'm an graduated student in Computer Science and Engineering at National Institute Of Technology Jalandhar 
+                       in May 2016.
                       I have worked on php for web development and knew mysql , ajax, jquery .
                       I have experience of programming language go , java , c ,c++,python.
                       I have experience of framework Django and meteor.
-                      I have worked with openCV for my college project
-                      <a href="https://github.com/haikentcode/haios">Image Search Engine</a>.
+                      I have worked with openCV for Image Processing and machine learning package of python
+                      like scikit-learn , scipy ,numpy ,matplotlib etc.
                     </p>
 
-                    <p class="signature">hkumar</p>
+                    <p class="signature">h.kumar</p>
                 </div><!--info end-->
             </div><!--personal statement end-->
 
@@ -171,7 +190,7 @@
                         </div>
 
                         <div class="year col-md-3">
-                            <p>20012-present</p>
+                            <p>2012-2016</p>
                         </div>
                     </div><!--Education & Certification 1 end-->
 
@@ -191,6 +210,54 @@
 
                 <div class="col-sm-11">
                     <h3>Job Experiences</h3>
+                    
+                    
+                                        <div class="row">
+                        <div class="col-md-9">
+                            <h4>Software Developer ( catalog Team )</h4>
+                            <p class="sub"><a href="https://www.shopclues.com/">Shopclues</a>
+                            </p>
+                            <p>
+                              <dl>
+
+                               <dd>1.Developed and design Mastercatalog tool ( frontend and
+backend<dd>
+                                <dt>
+                                </dt>
+                                <br>
+                              <dd> 2.Developed and design Feature variant structure and api </dd>
+                                <dt>
+                                </dt>
+                                <br>
+                              <dd> 3.Developed Product classification algo ( text and image ) <dd>
+                                <dt>
+                                </dt>
+                                <br>
+                                <dd>4.Develop price prediction api to suggest price to new product <dd>
+                                <dt>
+                                </dt>
+                                <br>
+                                <dd>5.Develop price recommendation api to boost selling <dd>
+                                <dt>
+                                </dt>
+                                <br>
+                                <dd>6.Develop and design product weight prediction API to
+estimate shipping cost<dd>
+                                <dt>
+                                </dt>
+                                <br>
+                             
+                                        
+                                            
+                             </dl>
+                            </p>
+                        </div>
+
+                        <div class="year col-md-3">
+                            <p>06/2016 – Present</p>
+                        </div>
+                    </div><!--Job 2 end-->
+                    
 
                     <div class="row">
                         <div class="col-md-9">
@@ -214,7 +281,7 @@
                                   are vendor  code have some variation in each company
                                 </dt>
                                 <br>
-                              <dd> 3.Extra Slip Generation<dd>
+                              <dd> 3.Extra Slip Generator<dd>
                                 <dt>
                                   We have contributed in godam (logistic system of Delhivery) to  generate
                                   extra slip at outbound according to client's requirement .Client will
@@ -245,13 +312,6 @@
                 <div class="col-sm-11 col-md-10">
                     <h3 class="mobmid">Technical skills </h3>
 
-                    <p>PHP</p>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 55%">
-                            <span class="sr-only">55% Complete (success)</span>
-                        </div>
-                    </div><!--skill end-->
-
 
                     <p>Python</p>
                     <div class="progress">
@@ -263,21 +323,28 @@
                     <p>Django</p>
                     <div class="progress">
                         <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                            <span class="sr-only">60% Complete (warning)</span>
+                            <span class="sr-only">70% Complete (warning)</span>
                         </div>
                     </div><!--skill end-->
 
-                    <p>Meteor</p>
+                    <p>TensorFlow</p>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
-                            <span class="sr-only">30% Complete (danger)</span>
+                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 35%">
+                            <span class="sr-only">35% Complete (danger)</span>
                         </div>
                     </div><!--skill end-->
 
                     <p>Javascript</p>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
-                            <span class="sr-only">30% Complete (danger)</span>
+                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                            <span class="sr-only">40% Complete (danger)</span>
+                        </div>
+                    </div><!--skill end-->
+                    
+                    <p>PHP</p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 55%">
+                            <span class="sr-only">55% Complete (success)</span>
                         </div>
                     </div><!--skill end-->
 
@@ -290,22 +357,22 @@
 
                     <p>Photoshop</p>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
-                            <span class="sr-only">30% Complete (danger)</span>
+                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                            <span class="sr-only">40% Complete (danger)</span>
                         </div>
                     </div><!--skill end-->
 
                     <p>Mongodb</p>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 55%">
-                            <span class="sr-only">55% Complete (warning)</span>
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+                            <span class="sr-only">65% Complete (warning)</span>
                         </div>
                     </div><!--skill end-->
 
                     <p>SQL</p>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-                            <span class="sr-only">45% Complete (danger)</span>
+                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+                            <span class="sr-only">65% Complete (danger)</span>
                         </div>
                     </div><!--skill end-->
 
@@ -321,12 +388,28 @@
 
                 <div class="col-sm-11 col-md-10 ">
                     <h3>I've worked</h3>
+                    
+                    <div class="award">
+                        <h4>2.<a href="https://github.com/haikentcode/haios">Image and Text classificatio</a></h4>
+                        <p class="sub"> Using Keras,FastText and StarSpace classify text and Image </p>     
+                    </div>
+                    
+                    
+                    <div class="award">
+                        <h4>2.<a href="https://github.com/haikentcode/haios">Haios</a></h4>
+                        <p class="sub"> Image Search Engine </p>     
+                    </div>
 
                     <div class="award">
-                        <h4>Image Search Engine</h4>
-                        <p class="sub"><a href="https://github.com/haikentcode/haios">Haios Image Search Engine</a></p>
-                        <p>Image Search engine using python and openCV</p>
+                        <h4>3.<a href="https://github.com/haikentcode/digitalEye">digitalEye</a></h4>
+                         <p class="sub">Automated Attendance Management System using Face Recognition</p>      
                     </div>
+                    
+                    <div class="award">
+                        <h4>4.<a href="https://github.com/haikentcode/codeislife">Snack Game and other</a></h4>
+                         <p class="sub">Design game in C++</p>      
+                    </div>
+                      
                     <!--1st award end-->
 
 
@@ -343,7 +426,7 @@
     FOOTER
     =========================== -->
     <footer class="text-center">
-        <p>&copy; <a href="">haios org</a>, founder profile <a href="">haikent.com </a> - Designed by <a target="_blank" href=">hitesh kumar regar</a>.
+        <p> 2016 &copy; <a href="#"> Designed by <a target="_blank" href="http://www.haikent.com/">hitesh kumar regar</a>.
         </p>
     </footer>
 
@@ -352,6 +435,8 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <script src="js/jquery.nicescroll.min.js"></script>
     <script src="js/evenfly.js"></script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 </body>
 
 </html>
