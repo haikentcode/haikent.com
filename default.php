@@ -40,7 +40,6 @@
     <link href='https://fonts.googleapis.com/css?family=Kristi|Alegreya+Sans:300' rel='stylesheet' type='text/css'>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
-
     <!--[if IE]>
         <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
@@ -137,6 +136,14 @@ console.log("haikent");
                             </li>
                         </ul>
                     </div><!-- social 3rd col end-->
+                    
+                    <div class="col-sm-4">
+                        <ul class="list-unstyled">
+                            <li><a href="https://soundcloud.com/haikent"><span class="social fa fa-soundcloud"></span>soundcloud</a>
+                            </li>
+                        </ul>
+                    </div><!-- social 4th col end-->
+                    
                 </div><!-- header social end-->
             </div><!-- header right end-->
         </div><!-- header end-->
