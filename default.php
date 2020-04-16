@@ -433,7 +433,7 @@ estimate shipping cost<dd>
     FOOTER
     =========================== -->
     <footer class="text-center">
-        <p> 2016 &copy; <a href="#"> Designed by <a target="_blank" href="http://www.haikent.com/">hitesh kumar regar</a>.
+        <p> 2016 &copy; <a href="#"> Designed by <a target="_blank" href="http://www.haikent.com/">(hitesh kumar regar)</a>.
         </p>
     </footer>
 
