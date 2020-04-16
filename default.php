@@ -9,7 +9,7 @@
     <!-- ===========================
     THEME INFO
     =========================== -->
-    <meta name="description" content="Hi I am Hitesh Kumar Regar full stack software developer, founder of haios.org">
+    <meta name="description" content="Hi I am Hitesh Kumar Regar full stack software developer">
     <meta name="keywords" content="haikent,hitesh kumar regar,haikent kumar hitesh,codestar,full stack developer,haios,haios group,haiku,computer science technology">
     <meta name="author" content="hitesh kumar regar(haikent)">
 
@@ -433,7 +433,7 @@ estimate shipping cost<dd>
     FOOTER
     =========================== -->
     <footer class="text-center">
-        <p> 2016 &copy; <a href="#"> Designed by <a target="_blank" href="http://www.haikent.com/">(hitesh kumar regar)</a>.
+        <p> 2016 &copy; <a href="#"> Designed by <a target="_blank" href="http://www.haikent.com/">[hitesh kumar regar]</a>.
         </p>
     </footer>
 
