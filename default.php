@@ -16,7 +16,7 @@
     <!-- ===========================
     SITE TITLE
     =========================== -->
-    <title>haikent</title>
+    <title>#haikent</title>
 
     <!-- ===========================
     FAVICONS
@@ -44,7 +44,7 @@
         <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({
@@ -83,7 +83,7 @@ console.log("haikent");
                         </div>
                         <div class="col-sm-5 text-right dl-share">
                             <!-- AddToAny BEGIN -->
-                            
+
                             <a class="a2a_dd btn btn-default" href=""><span class="fa fa-share "></span> Share</a>
                             <script type="text/javascript">
                                 var a2a_config = a2a_config || {};
@@ -136,14 +136,14 @@ console.log("haikent");
                             </li>
                         </ul>
                     </div><!-- social 3rd col end-->
-                    
+
                     <div class="col-sm-4">
                         <ul class="list-unstyled">
                             <li><a href="https://soundcloud.com/haikent"><span class="social fa fa-soundcloud"></span>soundcloud</a>
                             </li>
                         </ul>
                     </div><!-- social 4th col end-->
-                    
+
                 </div><!-- header social end-->
             </div><!-- header right end-->
         </div><!-- header end-->
@@ -161,7 +161,7 @@ console.log("haikent");
 
                 <div class="col-sm-11">
                     <h3>Personal statement </h3>
-                    <p>Hi, I am Hitesh from Rajasthan (India).I'm an graduated student in Computer Science and Engineering at National Institute Of Technology Jalandhar 
+                    <p>Hi, I am Hitesh from Rajasthan (India).I'm an graduated student in Computer Science and Engineering at National Institute Of Technology Jalandhar
                        in May 2016.
                       I have worked on php for web development and knew mysql , ajax, jquery .
                       I have experience of programming language go , java , c ,c++,python.
@@ -217,8 +217,8 @@ console.log("haikent");
 
                 <div class="col-sm-11">
                     <h3>Job Experiences</h3>
-                    
-                    
+
+
                                         <div class="row">
                         <div class="col-md-9">
                             <h4>Software Developer ( catalog Team )</h4>
@@ -253,9 +253,9 @@ estimate shipping cost<dd>
                                 <dt>
                                 </dt>
                                 <br>
-                             
-                                        
-                                            
+
+
+
                              </dl>
                             </p>
                         </div>
@@ -264,7 +264,7 @@ estimate shipping cost<dd>
                             <p>06/2016 – Present</p>
                         </div>
                     </div><!--Job 2 end-->
-                    
+
 
                     <div class="row">
                         <div class="col-md-9">
@@ -347,7 +347,7 @@ estimate shipping cost<dd>
                             <span class="sr-only">40% Complete (danger)</span>
                         </div>
                     </div><!--skill end-->
-                    
+
                     <p>PHP</p>
                     <div class="progress">
                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 55%">
@@ -395,28 +395,28 @@ estimate shipping cost<dd>
 
                 <div class="col-sm-11 col-md-10 ">
                     <h3>I've worked</h3>
-                    
+
                     <div class="award">
                         <h4>2.<a href="https://github.com/haikentcode/haios">Image and Text classificatio</a></h4>
-                        <p class="sub"> Using Keras,FastText and StarSpace classify text and Image </p>     
+                        <p class="sub"> Using Keras,FastText and StarSpace classify text and Image </p>
                     </div>
-                    
-                    
+
+
                     <div class="award">
                         <h4>2.<a href="https://github.com/haikentcode/haios">Haios</a></h4>
-                        <p class="sub"> Image Search Engine </p>     
+                        <p class="sub"> Image Search Engine </p>
                     </div>
 
                     <div class="award">
                         <h4>3.<a href="https://github.com/haikentcode/digitalEye">digitalEye</a></h4>
-                         <p class="sub">Automated Attendance Management System using Face Recognition</p>      
+                         <p class="sub">Automated Attendance Management System using Face Recognition</p>
                     </div>
-                    
+
                     <div class="award">
                         <h4>4.<a href="https://github.com/haikentcode/codeislife">Snack Game and other</a></h4>
-                         <p class="sub">Design game in C++</p>      
+                         <p class="sub">Design game in C++</p>
                     </div>
-                      
+
                     <!--1st award end-->
 
 
