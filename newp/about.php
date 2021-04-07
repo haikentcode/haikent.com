@@ -18,28 +18,40 @@
           Hi,I have <?php echo date('Y')-2016; ?> years experience in diffrent kind of Technology in Software industry, Frontend and backed
 
         </p>
+
         <div class="row">
-          <div class="col-lg-6">
+          <div class="col-lg-4">
             <ul>
-              <li><i class="icofont-rounded-right"></i> <strong>Birthday:</strong> 1 July 1993</li>
-              <li><i class="icofont-rounded-right"></i> <strong>Website:</strong> www.haikent.com</li>
-              <li><i class="icofont-rounded-right"></i> <strong>Phone:</strong> +91 82090568**</li>
-              <li><i class="icofont-rounded-right"></i> <strong>City:</strong> City :Gurgaon, India</li>
+              <li><i class="icofont-linkedin" style="color:#0077b5"></i> <a style="color:#0077b5" traget="_blank" href="https://www.linkedin.com/in/haikent">Linkedin</a></li>
+             <li><i class="icofont-keyboard"></i> <a traget="_blank" href="https://www.hackerrank.com/haikent">Hackerrank</a></li>
+              <li><i class="icofont-youtube" style="color:#FF0000" ></i> <a style="color:#FF0000" target="_blank" href="https://www.youtube.com/c/hiteshkumar_haikent">Youtube</a></li>
+              <li><i class="icofont-soundcloud" style="color:#ff7700"></i> <a style="color:#ff7700" traget="_blank" href="https://soundcloud.com/haikent">soundcloud</a></li>
+
             </ul>
           </div>
-          <div class="col-lg-6">
+
+          <div class="col-lg-4">
             <ul>
-              <li><i class="icofont-rounded-right"></i> <strong>Age:</strong> <?php echo date('Y')-1993 ?></li>
-              <li><i class="icofont-rounded-right"></i> <strong>Degree:</strong>  Bachelor of Technology (CSE)</li>
-              <li><i class="icofont-rounded-right"></i> <strong>Email:</strong> haikenthk@gmail.com </li>
-              <li><i class="icofont-rounded-right"></i> <strong>Freelance:</strong> Available</li>
+              <li><i class="icofont-book" style="color: #fc4f08 "></i> <a style="color: #fc4f08 " traget="_blank" href="https://haikent.blogspot.in/">blogs</a></li>
+              <li><i class="icofont-facebook" style="color:#4267B2"></i> <a  style="color:#4267B2" traget="_blank" href="https://www.facebook.com/haikent.al">Facebook</a></li>
+              <li><i class="icofont-instagram" style="color:#8a3ab9"></i> <a style="color:#8a3ab9" traget="_blank" href="https://www.instagram.com/haikenthk/">Instagram</a></li>
+              <li><i class="icofont-skype" style="color: #00aff0 "></i> <a style="color: #00aff0 " traget="_blank" href="https://haikent.com/">haikenthk</a></li>
             </ul>
           </div>
+
+
+          <div class="col-lg-4">
+            <ul>
+              <li><i style="color:#4078c0" class="icofont-github"></i> <a style="color:#4078c0" target="_blank" href="https://github.com/haikentcode">Github</a></li>
+              <li><i class="icofont-email" style="color:#FBBC05"></i> <a style="color:#FBBC05" traget="_blank" href="mailto:haikenthk@gmail.com">haikenthk@gmail.com</a></li>
+              <li><i class="icofont-twitter" style="color:#1DA1F2"></i> <a style="color:#1DA1F2" traget="_blank" href="https://twitter.com/haikent_hitesh">Twitter</a></li>
+            </ul>
+          </div>
+
         </div>
-        <p>
-           I can develope any kind of site , Frontend backend part , Software to solve business problem
-           and using ai and machin learing to make system smart .
-        </p>
+         <code style="color:yellow">
+           Hi, I am Hitesh from Rajasthan (India). I'm an graduated student in Computer Science and Engineering at National Institute Of Technology Jalandhar in May 2016. I am full-stack software developer experienced in web app developing front and backend. I have explored my knowledge doing the projects in the following technology Django, Flask, Ajax, jQuery, go programming language, Java, C, C++, Python, PHP,Kotlin, OpenCV, sci-kit, pandas, NumPy,matplotlib, Jupyter(IPython), RabbitMQ, Bootstrap. I have knowledge of databases like SQL, MongoDB, Neo4j. I am also familiar with Artificial Intelligence and machine learning and Image processing. Now I am exploring myself with python technology with machine learning and AI.
+         </code>
       </div>
     </div>
 
@@ -245,7 +257,7 @@
       <div class="testimonial-item">
         <p>
           <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-          Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliquam leo in lectus placerat, eu imperdiet arcu elementum. Sed in est neque. Pellentesque a cursus lacus, eu convallis orci. Aliquam quam ligula, ornare eleifend magna commodo, sodales viverra dui. In auctor, eros in varius scelerisque, mi velit euismod tortor.
           <i class="bx bxs-quote-alt-right quote-icon-right"></i>
         </p>
         <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
@@ -256,7 +268,7 @@
       <div class="testimonial-item">
         <p>
           <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-          Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliquam leo in lectus placerat, eu imperdiet arcu elementum. Sed in est neque. Pellentesque a cursus lacus, eu convallis orci. Aliquam quam ligula, ornare eleifend magna commodo, sodales viverra dui. In auctor, eros in varius scelerisque, mi velit euismod tortor.
           <i class="bx bxs-quote-alt-right quote-icon-right"></i>
         </p>
         <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
@@ -267,7 +279,7 @@
       <div class="testimonial-item">
         <p>
           <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-          Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliquam leo in lectus placerat, eu imperdiet arcu elementum. Sed in est neque. Pellentesque a cursus lacus, eu convallis orci. Aliquam quam ligula, ornare eleifend magna commodo, sodales viverra dui. In auctor, eros in varius scelerisque, mi velit euismod tortor.
           <i class="bx bxs-quote-alt-right quote-icon-right"></i>
         </p>
         <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
@@ -278,7 +290,7 @@
       <div class="testimonial-item">
         <p>
           <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-          Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliquam leo in lectus placerat, eu imperdiet arcu elementum. Sed in est neque. Pellentesque a cursus lacus, eu convallis orci. Aliquam quam ligula, ornare eleifend magna commodo, sodales viverra dui. In auctor, eros in varius scelerisque, mi velit euismod tortor.
           <i class="bx bxs-quote-alt-right quote-icon-right"></i>
         </p>
         <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
@@ -289,7 +301,7 @@
       <div class="testimonial-item">
         <p>
           <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-          Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer aliquam leo in lectus placerat, eu imperdiet arcu elementum. Sed in est neque. Pellentesque a cursus lacus, eu convallis orci. Aliquam quam ligula, ornare eleifend magna commodo, sodales viverra dui. In auctor, eros in varius scelerisque, mi velit euismod tortor
           <i class="bx bxs-quote-alt-right quote-icon-right"></i>
         </p>
         <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
