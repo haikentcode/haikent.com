@@ -15,23 +15,23 @@
       <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
         <h3> Sr. Full Stack Software Developer</h3>
         <p class="font-italic">
-          Hi,I have 4 years experience in diffrent kind of Technology in Software industry, Frontend and backed
+          Hi,I have <?php echo date('Y')-2016; ?> years experience in diffrent kind of Technology in Software industry, Frontend and backed
 
         </p>
         <div class="row">
           <div class="col-lg-6">
             <ul>
-              <li><i class="icofont-rounded-right"></i> <strong>Birthday:</strong> 1 May 1995</li>
-              <li><i class="icofont-rounded-right"></i> <strong>Website:</strong> www.example.com</li>
-              <li><i class="icofont-rounded-right"></i> <strong>Phone:</strong> +123 456 7890</li>
-              <li><i class="icofont-rounded-right"></i> <strong>City:</strong> City : New York, USA</li>
+              <li><i class="icofont-rounded-right"></i> <strong>Birthday:</strong> 1 July 1993</li>
+              <li><i class="icofont-rounded-right"></i> <strong>Website:</strong> www.haikent.com</li>
+              <li><i class="icofont-rounded-right"></i> <strong>Phone:</strong> +91 82090568**</li>
+              <li><i class="icofont-rounded-right"></i> <strong>City:</strong> City :Gurgaon, India</li>
             </ul>
           </div>
           <div class="col-lg-6">
             <ul>
-              <li><i class="icofont-rounded-right"></i> <strong>Age:</strong> 30</li>
-              <li><i class="icofont-rounded-right"></i> <strong>Degree:</strong> Master</li>
-              <li><i class="icofont-rounded-right"></i> <strong>PhEmailone:</strong> email@example.com</li>
+              <li><i class="icofont-rounded-right"></i> <strong>Age:</strong> <?php echo date('Y')-1993 ?></li>
+              <li><i class="icofont-rounded-right"></i> <strong>Degree:</strong>  Bachelor of Technology (CSE)</li>
+              <li><i class="icofont-rounded-right"></i> <strong>Email:</strong> haikenthk@gmail.com </li>
               <li><i class="icofont-rounded-right"></i> <strong>Freelance:</strong> Available</li>
             </ul>
           </div>
@@ -53,7 +53,7 @@
       <div class="col-lg-3 col-md-6">
         <div class="count-box">
           <i class="icofont-simple-smile"></i>
-          <span data-toggle="counter-up">4</span>
+          <span data-toggle="counter-up"><?php echo date('Y')-2016; ?></span>
           <p>Year Of Experience</p>
         </div>
       </div>
@@ -61,7 +61,7 @@
       <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
         <div class="count-box">
           <i class="icofont-document-folder"></i>
-          <span data-toggle="counter-up">100</span>
+          <span data-toggle="counter-up">20</span>
           <p>Projects</p>
         </div>
       </div>
@@ -69,7 +69,7 @@
       <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
         <div class="count-box">
           <i class="icofont-live-support"></i>
-          <span data-toggle="counter-up">1,463</span>
+          <span data-toggle="counter-up">24</span>
           <p>Hours Of Support</p>
         </div>
       </div>
@@ -77,7 +77,7 @@
       <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
         <div class="count-box">
           <i class="icofont-users-alt-5"></i>
-          <span data-toggle="counter-up">15</span>
+          <span data-toggle="counter-up">1</span>
           <p>Hard Workers</p>
         </div>
       </div>
@@ -249,7 +249,7 @@
           <i class="bx bxs-quote-alt-right quote-icon-right"></i>
         </p>
         <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-        <h3>Saul Goodman</h3>
+        <h3> Pending..</h3>
         <h4>Ceo &amp; Founder</h4>
       </div>
 
@@ -260,7 +260,7 @@
           <i class="bx bxs-quote-alt-right quote-icon-right"></i>
         </p>
         <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-        <h3>Sara Wilsson</h3>
+        <h3>Pending..</h3>
         <h4>Designer</h4>
       </div>
 
@@ -271,7 +271,7 @@
           <i class="bx bxs-quote-alt-right quote-icon-right"></i>
         </p>
         <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-        <h3>Jena Karlis</h3>
+        <h3>Pending..</h3>
         <h4>Store Owner</h4>
       </div>
 
@@ -282,7 +282,7 @@
           <i class="bx bxs-quote-alt-right quote-icon-right"></i>
         </p>
         <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-        <h3>Matt Brandon</h3>
+        <h3>Pending..</h3>
         <h4>Freelancer</h4>
       </div>
 
@@ -293,7 +293,7 @@
           <i class="bx bxs-quote-alt-right quote-icon-right"></i>
         </p>
         <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-        <h3>John Larson</h3>
+        <h3>Pending..</h3>
         <h4>Entrepreneur</h4>
       </div>
 
