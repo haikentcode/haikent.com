@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Personal Bootstrap Template</title>
+  <title>Haikent</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
@@ -51,7 +51,7 @@
           <li class="active"><a href="#header">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#resume">Resume</a></li>
-          <li><a href="#services">Services</a></li>
+          <!-- <li><a href="#projects">Projects</a></li> -->
           <li><a href="#portfolio">Portfolio</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -74,7 +74,7 @@
 
 
   <!-- ======= Services Section ======= -->
-  <?php include("service.php") ?>
+  <?php include("projects.php") ?>
   <!-- End Services Section -->
 
 
@@ -92,7 +92,7 @@
     <!-- You can delete the links only if you purchased the pro version. -->
     <!-- Licensing information: https://bootstrapmade.com/license/ -->
     <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/personal-free-resume-bootstrap-template/ -->
-    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+
   </div>
 
   <!-- Vendor JS Files -->
