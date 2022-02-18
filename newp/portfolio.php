@@ -23,11 +23,11 @@
         <div class="portfolio-wrap">
           <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
           <div class="portfolio-info">
-            <h4>App 1</h4>
-            <p>App</p>
+            <h4>LSRS.IN</h4>
+            <p>website</p>
             <div class="portfolio-links">
               <a href="assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
-              <a href="#" title="More Details"><i class="bx bx-link"></i></a>
+              <a href="http://lsrs.in/" target="_blank" title="LSRS"><i class="bx bx-link"></i></a>
             </div>
           </div>
         </div>
@@ -37,11 +37,11 @@
         <div class="portfolio-wrap">
           <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
           <div class="portfolio-info">
-            <h4>Web 3</h4>
-            <p>Web</p>
+            <h4>Guitar</h4>
+            <p>Acostic</p>
             <div class="portfolio-links">
               <a href="assets/img/portfolio/portfolio-2.jpg" data-gall="portfolioGallery" class="venobox" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="#" title="More Details"><i class="bx bx-link"></i></a>
+              <a target="_blank" href="https://www.youtube.com/watch?v=r44nr4Hsg78" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
         </div>
@@ -51,11 +51,11 @@
         <div class="portfolio-wrap">
           <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
           <div class="portfolio-info">
-            <h4>App 2</h4>
-            <p>App</p>
+            <h4>Pinao</h4>
+            <p>Ode to joy Symphony No. 9</p>
             <div class="portfolio-links">
               <a href="assets/img/portfolio/portfolio-3.jpg" data-gall="portfolioGallery" class="venobox" title="App 2"><i class="bx bx-plus"></i></a>
-              <a href="#" title="More Details"><i class="bx bx-link"></i></a>
+              <a target="_blank" href="https://www.youtube.com/watch?v=6DobjdM8Mrg" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
         </div>
