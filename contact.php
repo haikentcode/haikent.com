@@ -37,7 +37,7 @@
         <div class="info-box">
           <i class="bx bx-phone-call"></i>
           <h3>Call Me</h3>
-          <p>+91-8209056894</p>
+          <p>+91-82090568**</p>
         </div>
       </div>
     </div>
