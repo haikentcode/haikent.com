@@ -246,7 +246,7 @@
   </div><!-- End Interests -->
 
   <!-- ======= Testimonials ======= -->
-  <div class="testimonials container">
+  <!-- <div class="testimonials container">
 
     <div class="section-title">
       <h2>Feedback</h2>
@@ -311,6 +311,6 @@
 
     </div>
 
-  </div><!-- End Testimonials  -->
+  </div>End Testimonials  -->
 
 </section>
