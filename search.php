@@ -28,7 +28,7 @@ try {
         $pattern = '/\b' . preg_quote($hindiWord, '/') . '\b/i'; // Case-insensitive search
 
         // Query to search for rows containing the specified Hindi word in the raw_text_data column
-        $query = "SELECT * FROM pdf_text_data WHERE raw_text_data REGEXP :pattern";
+        $query = "SELECT * FROM pdf_text_data WHERE raw_text_data LIKE :pattern";
         $stmt = $db->prepare($query);
         $stmt->bindValue(':pattern', $pattern, SQLITE3_TEXT);
 
