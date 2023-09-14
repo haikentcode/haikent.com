@@ -87,6 +87,9 @@ try {
                 break; // Exit the loop if we've reached 100 results
             }
 
+            $rawTextData = $result['raw_text_data'];
+            $highlightedText = highlightHindiWords($rawTextData, $hindiWords);
+
             ?>
 
 <div class="result-item">
@@ -95,7 +98,7 @@ try {
       <span class="result-value"><?php echo $result['pdf_name']; ?></span> - Page Number: <?php echo $result['page_number']; ?>
     </div>
   </div>
-  <div class="result-data">Raw Text Data: <?php echo highlightHindiWords($result['raw_text_data'],$hindiWords); ?></div>
+  <div class="result-data">Raw Text Data: <?php echo $highlightedText; ?></div>
   <div class="result-data">Score: <?php echo $result['score']; ?></div>
 </div>
 
