@@ -88,6 +88,34 @@
         margin-top: 8px;
         color: #555;
       }
+
+      /* CSS for mobile view */
+      @media (max-width: 768px) {
+        .result-item {
+          margin-bottom: 16px;
+          padding: 16px;
+          background-color: #fff;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-header {
+          margin-bottom: 8px;
+        }
+
+        .result-title,
+        .result-value {
+          display: block; /* Stack title and value vertically */
+        }
+
+        .result-title {
+          font-weight: bold;
+        }
+
+        .result-data {
+          margin-top: 8px;
+          color: #555;
+        }
+      }
     </style>
   </head>
 
