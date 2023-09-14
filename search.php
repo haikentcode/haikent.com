@@ -23,7 +23,7 @@ try {
 
     if($exactLine){
 
-      array_push($hindiWords,$exactLine)
+      array_push($hindiWords,$exactLine);
 
     }
 
