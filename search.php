@@ -97,7 +97,7 @@ try {
             }
 
             $rawTextData = $result['raw_text_data'];
-            $highlightedText = highlightHindiWords($rawTextData, $hindiWords);
+            $highlightedText = highlightMultipleHindiWords($rawTextData, $hindiWords);
 
             ?>
 
