@@ -19,6 +19,8 @@ try {
     // Split the Hindi text line into individual words
     $hindiWords = preg_split('/\s+/', $hindiLine, -1, PREG_SPLIT_NO_EMPTY);
 
+    echo $hindiWords;
+
     // Create an array to store the results with scores
     $results = array();
 
