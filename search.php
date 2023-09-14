@@ -74,12 +74,25 @@ try {
             if ($count >= 100) {
                 break; // Exit the loop if we've reached 100 results
             }
-            echo '<div class="result-item">';
-            echo '<p class="result-data">PDF Name: ' . $result['pdf_name'] . '</p>';
-            echo '<p class="result-data">Page Number: ' . $result['page_number'] . '</p>';
-            echo '<p class="result-data">Raw Text Data: ' . $result['raw_text_data'] . '</p>';
-            echo '<p class="result-data">Score: ' . $result['score'] . '</p>';
-            echo '</div>';
+
+            ?>
+
+<div class="result-item">
+  <div class="result-header">
+    <span class="result-title">PDF Name:</span>
+    <span class="result-value"><?php echo $result['pdf_name']; ?></span>
+  </div>
+  <div class="result-header">
+    <span class="result-title">Page Number:</span>
+    <span class="result-value"><?php echo $result['page_number']; ?></span>
+  </div>
+  <p class="result-data">Raw Text Data: <?php echo $result['raw_text_data']; ?></p>
+  <p class="result-data">Score: <?php echo $result['score']; ?></p>
+</div>
+
+
+   <?php
+
           }
         ?>
       </table>

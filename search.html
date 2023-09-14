@@ -84,6 +84,17 @@
     .result-data {
       font-weight: bold;
     }
+
+    /* CSS for the loader */
+    #loader {
+      display: none;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .hidden {
+      display: none;
+    }
   </style>
 
   <body>
@@ -91,16 +102,24 @@
 
     <label for="search_query">Search PDF Text:</label>
     <input type="text" id="search_query" placeholder="Enter search query" />
-    <button onclick="searchPdfText()">Search</button>
+    <button id="search_button" onclick="searchPdfText()">Search</button>
 
     <div id="search_results">
       <!-- Display search results here -->
     </div>
 
+    <div id="loader" class="hidden">Loading...</div>
+
     <script>
       function searchPdfText() {
         var searchQuery = document.getElementById("search_query").value;
         var resultsDiv = document.getElementById("search_results");
+        var loaderDiv = document.getElementById("loader");
+        var searchButton = document.getElementById("search_button");
+
+        // Show loader and disable search button
+        loaderDiv.classList.remove("hidden");
+        searchButton.disabled = true;
 
         // Use AJAX to send the search query to the server
         var xhr = new XMLHttpRequest();
@@ -108,6 +127,10 @@
           if (xhr.readyState === 4 && xhr.status === 200) {
             // Update the results div with the response
             resultsDiv.innerHTML = xhr.responseText;
+
+            // Hide loader and enable search button
+            loaderDiv.classList.add("hidden");
+            searchButton.disabled = false;
           }
         };
 
