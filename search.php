@@ -58,30 +58,42 @@ try {
         return $b['score'] - $a['score'];
     });
 
-    // Display the results with scores
-    echo "<html><head><title>Search Results</title></head><body>";
-    echo "<h1>Search Results</h1>";
 
     if (!empty($results)) {
-        echo "<table border='1'>";
-        echo "<tr><th>PDF Name</th><th>Page Number</th><th>Raw Text Data</th><th>Score</th></tr>";
 
-        $count = 0;
+      ?>
 
-        foreach ($results as $result) {
+      <div class="result-box">
+      <h2>Search Results</h2>
+      <table>
+        <tr>
+          <th>PDF Name</th>
+          <th>Page Number</th>
+          <th>Raw Text Data</th>
+          <th>Score</th>
+        </tr>
+        <?php
+          // Your PHP code to loop through and display results here
+          $count = 0;
+          foreach ($results as $result) {
 
             if ($count >= 100) {
                 break; // Exit the loop if we've reached 100 results
             }
+
             echo "<tr>";
             echo "<td>" . $result['pdf_name'] . "</td>";
             echo "<td>" . $result['page_number'] . "</td>";
             echo "<td>" . $result['raw_text_data'] . "</td>";
             echo "<td>" . $result['score'] . "</td>";
             echo "</tr>";
-        }
+          }
+        ?>
+      </table>
+    </div>
 
-        echo "</table>";
+    <?php
+
     } else {
         echo "No matching rows found.";
     }
