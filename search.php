@@ -21,7 +21,7 @@ try {
     // $stmt->bindValue(':pattern', $pattern, SQLITE3_TEXT);
 
     // Query to retrieve the first two rows
-    $query = "SELECT * FROM pdf_text_data where raw_text_data like '*खोज*' ";
+    $query = "SELECT * FROM pdf_text_data where raw_text_data REGEXP '/^.*खोज.*$/i' ";
     
     $result = $db->query($query);
 
