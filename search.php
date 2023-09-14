@@ -1,6 +1,5 @@
 <?php
 
-
  try {
       
       $pdo = new SQLite3('./pdf_text.db');
