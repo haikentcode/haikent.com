@@ -65,13 +65,7 @@ try {
 
       <div class="result-box">
       <h2>Search Results</h2>
-      <table>
-        <tr>
-          <th>PDF Name</th>
-          <th>Page Number</th>
-          <th>Raw Text Data</th>
-          <th>Score</th>
-        </tr>
+
         <?php
           // Your PHP code to loop through and display results here
           $count = 0;
@@ -80,13 +74,12 @@ try {
             if ($count >= 100) {
                 break; // Exit the loop if we've reached 100 results
             }
-
-            echo "<tr>";
-            echo "<td>" . $result['pdf_name'] . "</td>";
-            echo "<td>" . $result['page_number'] . "</td>";
-            echo "<td>" . $result['raw_text_data'] . "</td>";
-            echo "<td>" . $result['score'] . "</td>";
-            echo "</tr>";
+            echo '<div class="result-item">';
+            echo '<p class="result-data">PDF Name: ' . $result['pdf_name'] . '</p>';
+            echo '<p class="result-data">Page Number: ' . $result['page_number'] . '</p>';
+            echo '<p class="result-data">Raw Text Data: ' . $result['raw_text_data'] . '</p>';
+            echo '<p class="result-data">Score: ' . $result['score'] . '</p>';
+            echo '</div>';
           }
         ?>
       </table>
