@@ -8,8 +8,11 @@ try {
         exit();
     }
 
+    $searchQuery = $_GET['query'];
+    $pattern = preg_quote($searchQuery, '/');
+
     // Query to retrieve the first two rows
-    $query = "SELECT * FROM pdf_text_data LIMIT 5";
+    $query = "SELECT * FROM pdf_text_data where raw_text_data REGEX ".$pattern;
     $result = $db->query($query);
 
     // Check if the query was successful
