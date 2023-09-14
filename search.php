@@ -1,5 +1,6 @@
 <?php
 try {
+    // Create or open the SQLite database file
     $db = new SQLite3('pdf_text.db');
 
     // Check if the database connection was successful
