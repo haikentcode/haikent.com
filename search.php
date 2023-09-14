@@ -101,18 +101,7 @@ try {
                 </table>
               </div>
 
-
-
-
          <?php
-
-            echo "<tr>";
-            echo "<td>" . $result['pdf_name'] . "</td>";
-            echo "<td>" . $result['page_number'] . "</td>";
-            echo "<td>" . $result['raw_text_data'] . "</td>";
-            echo "<td>" . $result['score'] . "</td>";
-            echo "</tr>";
-
             // Increment the counter
             $count++;
         }
