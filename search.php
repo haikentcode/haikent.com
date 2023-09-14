@@ -14,14 +14,16 @@ try {
     // Construct the regex pattern to match the exact line in the description column
     $pattern = '/^' . $line . '$/i'; // Use the "i" flag for case-insensitivity
 
+    echo $pattern;
 
 
-    $query = "SELECT * FROM my_table WHERE description REGEXP :pattern";
-    $stmt = $db->prepare($query);
-    $stmt->bindValue(':pattern', $pattern, SQLITE3_TEXT);
+
+    // $query = "SELECT * FROM my_table WHERE description REGEXP :pattern";
+    // $stmt = $db->prepare($query);
+    // $stmt->bindValue(':pattern', $pattern, SQLITE3_TEXT);
 
     // Query to retrieve the first two rows
-    // $query = "SELECT * FROM pdf_text_data LIMIT 5";
+    $query = "SELECT * FROM pdf_text_data LIMIT 5";
     
     $result = $db->query($query);
 
