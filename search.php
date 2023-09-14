@@ -7,7 +7,7 @@
       if (isset($_GET['query'])) {
 
             $searchQuery = $_GET['query'];
-            echo "Hello search ->".$searchQuery."  ".$db ;
+            echo "Hello search ->".$searchQuery;
 
       }
 
