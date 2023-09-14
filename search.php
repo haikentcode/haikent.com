@@ -74,6 +74,38 @@ try {
                 break; // Exit the loop if we've reached 100 results
             }
 
+
+            ?>
+
+
+          <div class="result-box">
+                <h2>Search Results</h2>
+                <table>
+                  <tr>
+                    <th>PDF Name</th>
+                    <th>Page Number</th>
+                    <th>Raw Text Data</th>
+                    <th>Score</th>
+                  </tr>
+                  <?php
+                    // Your PHP code to loop through and display results here
+                    foreach ($results as $result) {
+                      echo "<tr>";
+                      echo "<td>" . $result['pdf_name'] . "</td>";
+                      echo "<td>" . $result['page_number'] . "</td>";
+                      echo "<td>" . $result['raw_text_data'] . "</td>";
+                      echo "<td>" . $result['score'] . "</td>";
+                      echo "</tr>";
+                    }
+                  ?>
+                </table>
+              </div>
+
+
+
+
+         <?php
+
             echo "<tr>";
             echo "<td>" . $result['pdf_name'] . "</td>";
             echo "<td>" . $result['page_number'] . "</td>";
