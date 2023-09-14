@@ -9,10 +9,20 @@ try {
     }
 
     $searchQuery = $_GET['query'];
-    $pattern = preg_quote($searchQuery, '/');
+    $line = preg_quote($searchQuery, '/');
+
+    // Construct the regex pattern to match the exact line in the description column
+    $pattern = '/^' . $line . '$/i'; // Use the "i" flag for case-insensitivity
+
+
+
+    $query = "SELECT * FROM my_table WHERE description REGEXP :pattern";
+    $stmt = $db->prepare($query);
+    $stmt->bindValue(':pattern', $pattern, SQLITE3_TEXT);
 
     // Query to retrieve the first two rows
-    $query = "SELECT * FROM pdf_text_data where raw_text_data like  `जिसका`";
+    // $query = "SELECT * FROM pdf_text_data LIMIT 5";
+    
     $result = $db->query($query);
 
     // Check if the query was successful
