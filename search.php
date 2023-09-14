@@ -8,9 +8,9 @@
 
             $searchQuery = $_GET['query'];
 
-            $sql = "SELECT pdf_name, page_number, raw_text_data FROM pdf_text_data WHERE raw_text_data LIKE :query";
+            $sql = "SELECT pdf_name, page_number, raw_text_data FROM pdf_text_data WHERE raw_text_data LIKE ".$searchQuery;
             $stmt = $db->prepare(sql);
-            $stmt->bindValue(':query', '%' . $searchQuery . '%', SQLITE3_TEXT);
+            // $stmt->bindValue(':query', '%' . $searchQuery . '%', SQLITE3_TEXT);
 
             // // Execute the query and fetch results
             // $results = $stmt->execute();
