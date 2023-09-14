@@ -28,7 +28,7 @@ try {
         $pattern = '%' . $hindiWord . '%';
 
         // Query to search for rows containing the specified Hindi word in the raw_text_data column
-        $query = "SELECT * FROM pdf_text_data WHERE raw_text_data LIKE :pattern";
+        $query = "SELECT * FROM pdf_text_data WHERE raw_text_data LIKE :pattern limit 100";
         $stmt = $db->prepare($query);
         $stmt->bindValue(':pattern', $pattern, SQLITE3_TEXT);
 
