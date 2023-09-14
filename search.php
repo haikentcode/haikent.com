@@ -9,7 +9,7 @@ try {
     }
 
     // Query to retrieve the first two rows
-    $query = "SELECT * FROM my_table LIMIT 2";
+    $query = "SELECT * FROM pdf_text_data LIMIT 2";
     $result = $db->query($query);
 
     // Check if the query was successful
