@@ -80,10 +80,9 @@ try {
 <div class="result-item">
   <div class="result-header">
     <div class="header-background">
-      <span class="result-value"><?php echo $result['pdf_name']; ?></span>
+      <span class="result-value"><?php echo $result['pdf_name']; ?></span> - Page Number: <?php echo $result['page_number']; ?>
     </div>
   </div>
-  <div class="result-data">Page Number: <?php echo $result['page_number']; ?></div>
   <div class="result-data">Raw Text Data: <?php echo $result['raw_text_data']; ?></div>
   <div class="result-data">Score: <?php echo $result['score']; ?></div>
 </div>
