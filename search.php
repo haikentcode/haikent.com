@@ -58,14 +58,8 @@ try {
         return $b['score'] - $a['score'];
     });
 
-    // Display the results with scores
-    echo "<html><head><title>Search Results</title></head><body>";
-    echo "<h1>Search Results</h1>";
 
     if (!empty($results)) {
-        echo "<table border='1'>";
-        echo "<tr><th>PDF Name</th><th>Page Number</th><th>Raw Text Data</th><th>Score</th></tr>";
-
         $count = 0;
 
         foreach ($results as $result) {
