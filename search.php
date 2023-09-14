@@ -13,7 +13,7 @@
             // $stmt->bindValue(':query', '%' . $searchQuery . '%', SQLITE3_TEXT);
 
             // // Execute the query and fetch results
-            // $results = $stmt->execute();
+            $results = $stmt->execute();
 
             echo "Hello search ->".$searchQuery."  ";
 
