@@ -17,7 +17,7 @@ try {
 
         // Loop through the result set and print each row
         while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-            echo $row['description']."</br>";
+            echo $row['raw_text_data']."</br>";
         }
 
     } else {
