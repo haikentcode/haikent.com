@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PDF Text Search</title>
+    <style>
+      /* Add your CSS styles for formatting here */
+    </style>
+  </head>
+  <body>
+    <h1>PDF Text Search</h1>
+
+    <label for="search_query">Search PDF Text:</label>
+    <input type="text" id="search_query" placeholder="Enter search query" />
+    <button onclick="searchPdfText()">Search</button>
+
+    <div id="search_results">
+      <!-- Display search results here -->
+    </div>
+
+    <script>
+      function searchPdfText() {
+        var searchQuery = document.getElementById("search_query").value;
+        var resultsDiv = document.getElementById("search_results");
+
+        // Use AJAX to send the search query to the server
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            // Update the results div with the response
+            resultsDiv.innerHTML = xhr.responseText;
+          }
+        };
+
+        // Send a GET request to the server with the search query
+        xhr.open(
+          "GET",
+          "search.php?query=" + encodeURIComponent(searchQuery),
+          true
+        );
+        xhr.send();
+      }
+    </script>
+  </body>
+</html>
