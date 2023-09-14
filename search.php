@@ -9,27 +9,17 @@ try {
     }
 
     // Query to retrieve the first two rows
-    $query = "SELECT * FROM pdf_text_data LIMIT 2";
+    $query = "SELECT * FROM pdf_text_data LIMIT 5";
     $result = $db->query($query);
 
     // Check if the query was successful
     if ($result) {
-        echo "<html><head><title>Table Data</title></head><body>";
-        echo "<h1>Table Data</h1>";
-        echo "<table border='1'>";
-        echo "<tr><th>ID</th><th>Name</th><th>Description</th></tr>";
 
         // Loop through the result set and print each row
         while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-            echo "<tr>";
-            echo "<td>" . $row['id'] . "</td>";
-            echo "<td>" . $row['name'] . "</td>";
-            echo "<td>" . $row['description'] . "</td>";
-            echo "</tr>";
+            echo $row['description']."</br>";
         }
 
-        echo "</table>";
-        echo "</body></html>";
     } else {
         echo "Query failed.";
     }
