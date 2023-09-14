@@ -1,5 +1,7 @@
 <?php
-echo "hello"
+echo "hello";
+$pdo = new SQLite3('./pdf_text.db');
+echo "hil";
 //  $pdo = new SQLite3('./pdf_text.db');
 
 // if (isset($_GET['query'])) {
