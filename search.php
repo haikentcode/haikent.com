@@ -19,15 +19,13 @@ try {
     // Split the Hindi text line into individual words
     $hindiWords = preg_split('/\s+/', $hindiLine, -1, PREG_SPLIT_NO_EMPTY);
 
-    var_dump($hindiWords);
-
     // Create an array to store the results with scores
     $results = array();
 
     // Loop through each word in the Hindi text line
     foreach ($hindiWords as $hindiWord) {
         // Construct the regex pattern with the Hindi word
-        $pattern = '/\b' . preg_quote($hindiWord, '/') . '\b/i'; // Case-insensitive search
+        $pattern = '%' . $hindiWord . '%';
 
         // Query to search for rows containing the specified Hindi word in the raw_text_data column
         $query = "SELECT * FROM pdf_text_data WHERE raw_text_data LIKE :pattern";
