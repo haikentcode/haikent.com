@@ -1,4 +1,8 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 try {
     // Create or open the SQLite database file
     $db = new SQLite3('pdf_text.db');
