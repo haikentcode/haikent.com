@@ -1,5 +1,5 @@
 <?php
- $db = new SQLite3('pdf_text.db');
+ $pdo = new SQLite3('pdf_text.db');
 
 if (isset($_GET['query'])) {
     $searchQuery = $_GET['query'];
