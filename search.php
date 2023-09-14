@@ -23,7 +23,7 @@ try {
     // $stmt->bindValue(':pattern', $pattern, SQLITE3_TEXT);
 
     // Query to retrieve the first two rows
-    $query = "SELECT * FROM my_table WHERE raw_text_data REGEXP ".$pattern;
+    $query = "SELECT * FROM my_table WHERE raw_text_data REGEXP /^ इस स्थान में प्ररन संख्या $/i";
     $result = $db->query($query);
 
     // Check if the query was successful
