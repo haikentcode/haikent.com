@@ -1,18 +1,15 @@
 <?php
 
- try {
-      
-      $db = new SQLite3('pdf_text.db');
 
-      if (isset($_GET['query'])) {
-
-            $searchQuery = $_GET['query'];
-            echo "Hello search ->".$searchQuery;
-
-      }
-
-  } catch (Exception $e) {
-      echo "SQLite error: " . $e->getMessage();
+try {
+  $db = new SQLite3('pdf_text.db');
+  if ($db) {
+      echo "Connected to the database.";
+  } else {
+      echo "Failed to connect to the database.";
+  }
+} catch (Exception $e) {
+  echo "An error occurred: " . $e->getMessage();
 }
 
 ?>
