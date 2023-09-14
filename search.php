@@ -67,15 +67,16 @@ try {
     });
 
 
-    function highlightHindiWords($text, $hindiWords) {
-      foreach ($hindiWords as $word) {
-          // Use regular expression to match the word with word boundaries
-          $pattern = "/\b" . preg_quote($word, '/') . "\b/iu"; // Case-insensitive match
-          $replacement = '<span class="highlighted">$0</span>';
-          $text = preg_replace($pattern, $replacement, $text);
+      // Function to highlight multiple Hindi words in the text
+      function highlightMultipleHindiWords($text, $hindiWords) {
+        foreach ($hindiWords as $word) {
+            // Use regular expression to match the word with word boundaries
+            $pattern = "/\b" . preg_quote($word, '/') . "\b/iu"; // Case-insensitive match
+            $replacement = '<span class="highlighted">$0</span>';
+            $text = preg_replace($pattern, $replacement, $text);
+        }
+        return $text;
       }
-      return $text;
-  }
   
 
 
