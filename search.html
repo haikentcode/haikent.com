@@ -4,96 +4,94 @@
     <title>PDF Text Search</title>
     <style>
       /* Add your CSS styles for formatting here */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      label {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 20px;
+        display: block;
+      }
+
+      #search_query {
+        width: 300px;
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+      }
+
+      button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      #search_results {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        text-align: left;
+      }
+
+      /* CSS with light color header */
+      .result-item {
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        margin-bottom: 16px;
+        padding: 16px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .result-header {
+        margin-bottom: 8px;
+      }
+
+      .header-background {
+        background-color: #f0f0f0; /* Light gray color */
+        color: #333; /* Dark text color */
+        border-radius: 4px 4px 0 0; /* Rounded top corners */
+        padding: 8px;
+        font-weight: bold;
+        width: 100%; /* Full width */
+        display: block; /* Make it a block element */
+      }
+
+      .result-value {
+        font-weight: bold;
+        color: #333;
+      }
+
+      .result-data {
+        margin-top: 8px;
+        color: #555;
+      }
     </style>
   </head>
 
-  <style>
-    /* Add your CSS styles for formatting here */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-
-    h1 {
-      color: #333;
-    }
-
-    label {
-      font-size: 18px;
-      font-weight: bold;
-      margin-top: 20px;
-      display: block;
-    }
-
-    #search_query {
-      width: 300px;
-      padding: 10px;
-      font-size: 16px;
-      border: 2px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 5px;
-      margin-top: 10px;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    #search_results {
-      margin-top: 20px;
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background-color: #fff;
-      text-align: left;
-    }
-
-    /* CSS with light color header */
-    .result-item {
-      border: 1px solid #e0e0e0;
-      border-radius: 4px;
-      margin-bottom: 16px;
-      padding: 16px;
-      background-color: #fff;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .result-header {
-      margin-bottom: 8px;
-    }
-
-    .header-background {
-      background-color: #f0f0f0; /* Light gray color */
-      color: #333; /* Dark text color */
-      border-radius: 4px 4px 0 0; /* Rounded top corners */
-      padding: 8px;
-      font-weight: bold;
-      width: 100%; /* Full width */
-      display: block; /* Make it a block element */
-    }
-
-    .result-value {
-      font-weight: bold;
-      color: #333;
-    }
-
-    .result-data {
-      margin-top: 8px;
-      color: #555;
-    }
-  </style>
+  <div id="loader" class="hidden">Loading...</div>
 
   <body>
     <h1>PDF Text Search</h1>
@@ -105,8 +103,6 @@
     <div id="search_results">
       <!-- Display search results here -->
     </div>
-
-    <div id="loader" class="hidden">Loading...</div>
 
     <script>
       function searchPdfText() {
