@@ -21,7 +21,7 @@ try {
     $stmt->bindValue(':pattern', $pattern, SQLITE3_TEXT);
 
     // Query to retrieve the first two rows
-    // $query = "SELECT * FROM pdf_text_data LIMIT 5";
+    $query = "SELECT * FROM pdf_text_data LIMIT 5";
     
     $result = $db->query($query);
 
