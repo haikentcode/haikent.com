@@ -126,7 +126,8 @@
 
   <body>
     <h1>PDF Text Search</h1>
-    <input type="text" id="search_query" placeholder="Enter search query" />
+    <input type="text" id="search_query_exact" placeholder="Syntax Search" />
+    <input type="text" id="search_query" placeholder="Word wise searcg" />
     <button id="search_button" onclick="searchPdfText()">Search</button>
 
     <!-- Loader element -->
@@ -139,6 +140,8 @@
     <script>
       function searchPdfText() {
         var searchQuery = document.getElementById("search_query").value;
+        var searchQueryExact =
+          document.getElementById("search_query_exact").value;
         var resultsDiv = document.getElementById("search_results");
         var loaderDiv = document.getElementById("loader");
         var searchButton = document.getElementById("search_button");
@@ -163,7 +166,10 @@
         // Send a GET request to the server with the search query
         xhr.open(
           "GET",
-          "search.php?query=" + encodeURIComponent(searchQuery),
+          "search.php?query=" +
+            encodeURIComponent(searchQuery) +
+            "&query_exact=" +
+            encodeURIComponent(searchQueryExact),
           true
         );
         xhr.send();
