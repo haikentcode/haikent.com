@@ -69,15 +69,12 @@ try {
 
   // Function to highlight multiple Hindi words in the text
   function highlightMultipleHindiWords($text, $hindiWords) {
-    return preg_replace_callback('/\p{L}+/u', function($match) use ($hindiWords) {
-        $word = $match[0];
-        if (in_array($word, $hindiWords, true)) {
-            return '<span class="highlighted">' . $word . '</span>';
-        }
-        return $word;
-    }, $text);
+    foreach ($hindiWords as $word) {
+        $text = preg_replace('/(' . preg_quote($word, '/') . ')/u', '<span class="highlighted">$1</span>', $text);
+    }
+    return $text;
   }
-    
+      
 
 
     if (!empty($results)) {
