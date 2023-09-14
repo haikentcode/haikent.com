@@ -1,8 +1,10 @@
 <?php
 
+echo "I am here hello";
+
 try {
 
- $pdo = new SQLite3('./pdf_text.db');
+ $pdo = new SQLite3('pdf_text.db');
 
 if (isset($_GET['query'])) {
     $searchQuery = $_GET['query'];
@@ -31,7 +33,7 @@ if (isset($_GET['query'])) {
         echo "<p>No matching results found.</p>";
     }
   }
-  
+
 } catch (Exception $e) {
   echo "SQLite error: " . $e->getMessage();
 }
