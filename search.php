@@ -27,8 +27,6 @@ try {
         $stmt = $db->prepare($query);
         $stmt->bindValue(':pattern', $pattern, SQLITE3_TEXT);
 
-        echo "Bound SQL Query: " . $stmt->getSQL();
-
         // Execute the query
         $result = $stmt->execute();
 
