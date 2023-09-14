@@ -66,13 +66,23 @@ try {
         echo "<table border='1'>";
         echo "<tr><th>PDF Name</th><th>Page Number</th><th>Raw Text Data</th><th>Score</th></tr>";
 
+        $count = 0;
+
         foreach ($results as $result) {
+
+            if ($count >= 100) {
+                break; // Exit the loop if we've reached 100 results
+            }
+
             echo "<tr>";
             echo "<td>" . $result['pdf_name'] . "</td>";
             echo "<td>" . $result['page_number'] . "</td>";
             echo "<td>" . $result['raw_text_data'] . "</td>";
             echo "<td>" . $result['score'] . "</td>";
             echo "</tr>";
+
+            // Increment the counter
+            $count++;
         }
 
         echo "</table>";
