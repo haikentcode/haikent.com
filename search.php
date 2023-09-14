@@ -1,5 +1,5 @@
 <?php
-phpinfo();
+
  try {
       
       $db = new SQLite3('pdf_text.db');
