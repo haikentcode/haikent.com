@@ -15,7 +15,7 @@
             // // Execute the query and fetch results
             // $results = $stmt->execute();
 
-            echo "Hello search ->".$searchQuery."  ".SQLITE3_TEXT;
+            echo "Hello search ->".$searchQuery."  ".$stmt;
 
       }
 
