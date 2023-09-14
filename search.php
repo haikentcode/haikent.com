@@ -23,7 +23,7 @@ try {
     // $stmt->bindValue(':pattern', $pattern, SQLITE3_TEXT);
 
     // Query to retrieve the first two rows
-    $query = "SELECT * FROM my_table WHERE raw_text_data like प्ररन";
+    $query = "SELECT * FROM my_table WHERE raw_text_data limit 5";
     $result = $db->query($query);
 
     // Check if the query was successful
