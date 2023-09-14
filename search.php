@@ -8,7 +8,7 @@
 
             $searchQuery = $_GET['query'];
 
-            $sql = "SELECT pdf_name, page_number, raw_text_data FROM pdf_text_data WHERE raw_text_data LIKE ".$searchQuery;
+            $sql = "SELECT pdf_name, page_number, raw_text_data FROM pdf_text_data WHERE raw_text_data limit 1";
             $stmt = $db->prepare(sql);
             // $stmt->bindValue(':query', '%' . $searchQuery . '%', SQLITE3_TEXT);
 
