@@ -79,16 +79,15 @@ try {
 
 <div class="result-item">
   <div class="result-header">
-    <span class="result-title">PDF Name:</span>
-    <span class="result-value"><?php echo $result['pdf_name']; ?></span>
+    <div class="header-background">
+      <span class="result-value"><?php echo $result['pdf_name']; ?></span>
+    </div>
   </div>
-  <div class="result-header">
-    <span class="result-title">Page Number:</span>
-    <span class="result-value"><?php echo $result['page_number']; ?></span>
-  </div>
-  <p class="result-data">Raw Text Data: <?php echo $result['raw_text_data']; ?></p>
-  <p class="result-data">Score: <?php echo $result['score']; ?></p>
+  <div class="result-data">Page Number: <?php echo $result['page_number']; ?></div>
+  <div class="result-data">Raw Text Data: <?php echo $result['raw_text_data']; ?></div>
+  <div class="result-data">Score: <?php echo $result['score']; ?></div>
 </div>
+
 
 
    <?php
