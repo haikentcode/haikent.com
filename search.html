@@ -1,187 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>PDF Text Search</title>
-    <style>
-      /* Add your CSS styles for formatting here */
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-      }
-
-      h1 {
-        color: #333;
-      }
-
-      label {
-        font-size: 18px;
-        font-weight: bold;
-        margin-top: 20px;
-        display: block;
-      }
-
-      #search_query {
-        width: 300px;
-        padding: 10px;
-        font-size: 16px;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-      }
-
-      #search_query_exact {
-        width: 300px;
-        padding: 10px;
-        font-size: 16px;
-        border: 2px solid #ccc;
-        border-radius: 5px;
-      }
-
-      button {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        border-radius: 5px;
-        margin-top: 10px;
-      }
-
-      button:hover {
-        background-color: #0056b3;
-      }
-
-      #search_results {
-        margin-top: 20px;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #fff;
-        text-align: left;
-      }
-
-      /* CSS with light color header */
-      .result-item {
-        border: 1px solid #e0e0e0;
-        border-radius: 4px;
-        margin-bottom: 16px;
-        padding: 16px;
-        background-color: #fff;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-
-      .result-header {
-        margin-bottom: 8px;
-      }
-
-      .header-background {
-        background-color: #f0f0f0; /* Light gray color */
-        color: #333; /* Dark text color */
-        border-radius: 4px 4px 0 0; /* Rounded top corners */
-        padding: 8px;
-        font-weight: bold;
-        width: 100%; /* Full width */
-        display: block; /* Make it a block element */
-      }
-
-      .result-value {
-        font-weight: bold;
-        color: #333;
-      }
-
-      .result-data {
-        margin-top: 8px;
-        color: #555;
-      }
-
-      /* CSS for mobile view */
-      @media (max-width: 768px) {
-        .result-item {
-          margin-bottom: 16px;
-          padding: 16px;
-          background-color: #fff;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .result-header {
-          margin-bottom: 8px;
-        }
-
-        .result-title,
-        .result-value {
-          display: block; /* Stack title and value vertically */
-        }
-
-        .result-title {
-          font-weight: bold;
-        }
-
-        .result-data {
-          margin-top: 8px;
-          color: #555;
-        }
-      }
-
-      .highlighted {
-        background-color: yellow; /* Set your desired background color */
-        font-weight: bold; /* Add other styling as needed */
-      }
-    </style>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/scopy/manifest.json" />
+    <title>PDF Scopy</title>
+    <script defer="defer" src="/scopy/js/main.5e7c11e1.js"></script>
   </head>
-
   <body>
-    <h1>PDF Text Search</h1>
-    <input type="text" id="search_query_exact" placeholder="Syntax Search" />
-    <input type="text" id="search_query" placeholder="Word wise searcg" />
-    <button id="search_button" onclick="searchPdfText()">Search</button>
-
-    <!-- Loader element -->
-    <div id="loader" class="loader hidden"></div>
-
-    <div id="search_results">
-      <!-- Display search results here -->
-    </div>
-
-    <script>
-      function searchPdfText() {
-        var searchQuery = document.getElementById("search_query").value;
-        var searchQueryExact =
-          document.getElementById("search_query_exact").value;
-        var resultsDiv = document.getElementById("search_results");
-        var loaderDiv = document.getElementById("loader");
-        var searchButton = document.getElementById("search_button");
-
-        // Show loader and disable search button
-        loaderDiv.classList.remove("hidden");
-        searchButton.disabled = true;
-
-        // Use AJAX to send the search query to the server
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4 && xhr.status === 200) {
-            // Update the results div with the response
-            resultsDiv.innerHTML = xhr.responseText;
-
-            // Hide loader and enable search button
-            loaderDiv.classList.add("hidden");
-            searchButton.disabled = false;
-          }
-        };
-
-        // Send a GET request to the server with the search query
-        xhr.open(
-          "GET",
-          "search.php?query=" +
-            encodeURIComponent(searchQuery) +
-            "&query_exact=" +
-            encodeURIComponent(searchQueryExact),
-          true
-        );
-        xhr.send();
-      }
-    </script>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
   </body>
 </html>
