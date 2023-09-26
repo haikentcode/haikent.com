@@ -71,6 +71,7 @@ try {
     $json = json_encode($dataSubset);
 
     header('Content-Type: application/json');
+    header('Access-Control-Allow-Origin: *');
     echo $json;
 
    // Close the database connection
