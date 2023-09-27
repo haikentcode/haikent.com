@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.31bffa71.css","mappings":"AAAA,YACI,iBACF,CAEA,gBAEE,WAAY,CADZ,WAEF","sources":["FlyInsect.css"],"sourcesContent":[".fly-insect {\n    position: absolute;\n  }\n  \n  .fly-insect img {\n    width: 200px; /* Adjust the width of the fly image */\n    height: auto;\n  }\n  "],"names":[],"sourceRoot":""}
