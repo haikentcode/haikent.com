@@ -44,7 +44,7 @@
       <h1><a href="index.html">Haikent</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-      <h2 style="color:yellow">I'm a passionate <span>Sr. Software Engineer</span> from Gurgaon</h2>
+      <h2 style="color:yellow">I'm a passionate <span>Sr. Software Engineer</span></h2>
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
