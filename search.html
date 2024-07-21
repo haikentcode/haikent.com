@@ -1,27 +1,22 @@
 <!DOCTYPE html>
-
-<?php
-// Path to the asset-manifest.json file
-$manifestPath = 'path/to/build/asset-manifest.json';
-
-// Read the manifest file
-$manifest = json_decode(file_get_contents($manifestPath), true);
-
-// Get the paths for the main CSS and JS files
-$mainCss = $manifest['files']['main.css'];
-$mainJs = $manifest['files']['main.js'];
-?>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pdf Scopy</title>
-    <!-- Include the main CSS file -->
-    <link rel="stylesheet" href="<?php echo $mainCss; ?>" />
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/scopy/static/manifest.json" />
+    <title>PDF Scopy</title>
+    <script defer="defer" src="/scopy/static/js/main.6cbed9c7.js"></script>
+    <link href="/scopy/static/css/main.31bffa71.css" rel="stylesheet" />
   </head>
   <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!-- Include the main JS file -->
-    <script src="<?php echo $mainJs; ?>"></script>
   </body>
 </html>
