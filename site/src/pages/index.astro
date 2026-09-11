@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Resume from "../components/Resume.astro";
+import Portfolio from "../components/Portfolio.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout>
+  <Header />
+  <div class="mx-auto max-w-[820px] px-6 sm:px-10">
+    <main class="relative pl-6 sm:pl-8">
+      <div
+        class="spine-draw absolute top-0 left-0 h-full w-px bg-spine sm:left-0"
+      >
+      </div>
+      <Hero />
+      <About />
+      <Resume />
+      <Portfolio />
+      <Contact />
+    </main>
+    <Footer />
+  </div>
+</Layout>

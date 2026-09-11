@@ -1,0 +1,48 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+
+const navLinks = [
+  { href: "#about", label: "About" },
+  { href: "#resume", label: "Resume" },
+  { href: "#work", label: "Work" },
+  { href: "#contact", label: "Contact" },
+];
+---
+
+<header
+  class="sticky top-0 z-30 border-b border-spine bg-paper/90 backdrop-blur-sm"
+>
+  <div
+    class="mx-auto flex max-w-[820px] items-center justify-between px-6 py-4 sm:px-10"
+  >
+    <a href="#top" class="font-display text-[0.95rem] font-medium text-ink">
+      Hitesh Regar
+    </a>
+
+    <nav class="hidden items-center gap-6 sm:flex">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-sm text-ink-muted transition-colors hover:text-ink"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-1 sm:gap-2">
+      <nav class="flex items-center gap-3 sm:hidden">
+        {
+          navLinks.map((link) => (
+            <a href={link.href} class="text-sm text-ink-muted hover:text-ink">
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+      <ThemeToggle />
+    </div>
+  </div>
+</header>

@@ -1,0 +1,75 @@
+---
+import SectionMark from "./SectionMark.astro";
+
+const skillGroups = [
+  {
+    label: "Languages",
+    items: ["Python", "Java", "Go", "C", "C++", "PHP", "JavaScript", "Kotlin"],
+  },
+  {
+    label: "Frameworks",
+    items: [
+      "Django",
+      "Flask",
+      "Angular (NgRx/Store)",
+      "Spring / Hibernate",
+      "Bootstrap",
+    ],
+  },
+  {
+    label: "Data & ML",
+    items: [
+      "NumPy",
+      "Pandas",
+      "scikit-learn",
+      "TensorFlow",
+      "OpenCV",
+      "Jupyter",
+    ],
+  },
+  {
+    label: "Infra & data",
+    items: ["MySQL", "MongoDB", "Neo4j", "RabbitMQ", "Kafka"],
+  },
+];
+---
+
+<section class="pb-16 sm:pb-20">
+  <SectionMark label="About" id="about" />
+
+  <p class="max-w-[640px] text-[1.05rem] leading-[1.75] text-ink-muted">
+    I graduated in Computer Science and Engineering from Dr B. R. Ambedkar
+    NIT Jalandhar, and started out solving a vendor SKU-coding problem as an
+    intern at Delhivery. Since then I've built product-classification and
+    price-prediction algorithms for Shopclues' catalog team, and marketplace
+    and bidding tooling at Emtex Engineering. Outside of work, I play
+    <a
+      href="https://www.youtube.com/watch?v=r44nr4Hsg78"
+      target="_blank"
+      rel="noopener"
+      class="text-teal underline decoration-teal/40 underline-offset-4 hover:decoration-teal"
+      >guitar</a
+    >
+    and
+    <a
+      href="https://www.youtube.com/watch?v=6DobjdM8Mrg"
+      target="_blank"
+      rel="noopener"
+      class="text-teal underline decoration-teal/40 underline-offset-4 hover:decoration-teal"
+      >piano</a
+    >, and tinker with small IoT builds.
+  </p>
+
+  <dl class="mt-10 grid gap-5 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-6">
+    {
+      skillGroups.map((group) => (
+        <div>
+          <dt class="text-sm font-medium text-ink">{group.label}</dt>
+          <dd class="mt-1.5 text-sm leading-[1.7] text-ink-muted">
+            {group.items.join(", ")}
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>

@@ -1,0 +1,224 @@
+---
+import { Image } from "astro:assets";
+import SectionMark from "./SectionMark.astro";
+import lsrsImage from "../assets/portfolio-1.jpg";
+import guitarImage from "../assets/portfolio-2.jpg";
+import pianoImage from "../assets/portfolio-3.jpg";
+
+const items = [
+  {
+    title: "lsrs.in",
+    category: "IT",
+    range: "",
+    description:
+      "Wholesale marketplace for women's apparel, designed and hosted end to end.",
+    tags: ["Python", "Django", "Bootstrap", "DRF"],
+    link: "http://lsrs.in/",
+    image: lsrsImage,
+  },
+  {
+    title: "haikent.com",
+    category: "IT",
+    range: "",
+    description: "This site — personal CV, designed and hosted by me.",
+    tags: ["PHP", "Astro", "Tailwind CSS"],
+    link: null,
+    image: null,
+  },
+  {
+    title: "digitalEye",
+    category: "IT",
+    range: "2016",
+    description:
+      "Automated attendance management system using face recognition.",
+    tags: ["Python", "OpenCV"],
+    link: "https://github.com/haikentcode/digitalEye",
+    image: null,
+  },
+  {
+    title: "Snake Game and other",
+    category: "IT",
+    range: "2014",
+    description: "A handful of small games built in C++ during college.",
+    tags: ["C++"],
+    link: "https://github.com/haikentcode/codeislife",
+    image: null,
+  },
+  {
+    title: "Angie",
+    category: "IT",
+    range: "2020 — present",
+    description: "Arduino and sensor-based self-driving toy car.",
+    tags: ["Arduino", "IoT"],
+    link: null,
+    image: null,
+  },
+  {
+    title: "Image & text classification",
+    category: "IT",
+    range: "2018 — present",
+    description:
+      "Classifying text and images with Keras, FastText, and StarSpace.",
+    tags: ["Keras", "FastText", "StarSpace"],
+    link: null,
+    image: null,
+  },
+  {
+    title: "Guitar",
+    category: "Music",
+    range: "",
+    description: "An acoustic cover.",
+    tags: [],
+    link: "https://www.youtube.com/watch?v=r44nr4Hsg78",
+    image: guitarImage,
+  },
+  {
+    title: "Piano",
+    category: "Music",
+    range: "",
+    description: "Beethoven's Ode to Joy, Symphony No. 9.",
+    tags: [],
+    link: "https://www.youtube.com/watch?v=6DobjdM8Mrg",
+    image: pianoImage,
+  },
+];
+
+const filters = ["All", "IT", "Music"];
+---
+
+<section class="pb-16 sm:pb-20">
+  <SectionMark label="Work" id="work" />
+
+  <div class="mb-6 flex gap-5 text-sm" role="group" aria-label="Filter work by category">
+    {
+      filters.map((filter, i) => (
+        <button
+          type="button"
+          data-filter={filter}
+          class:list={[
+            "work-filter border-b border-transparent pb-1 text-ink-muted transition-colors hover:text-ink",
+            i === 0 && "is-active border-teal text-ink",
+          ]}
+        >
+          {filter}
+        </button>
+      ))
+    }
+  </div>
+
+  <div class="divide-y divide-spine border-t border-spine">
+    {
+      items.map((item) => (
+        <div class="work-row py-5" data-category={item.category}>
+          <div class="flex gap-4">
+            {item.image && (
+              <button
+                type="button"
+                class="work-lightbox-trigger group h-16 w-16 shrink-0 overflow-hidden rounded-md sm:h-20 sm:w-20"
+                data-title={item.title}
+              >
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  width={160}
+                  height={160}
+                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </button>
+            )}
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <h3 class="text-[1.02rem] font-medium text-ink">
+                  {item.link ? (
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener"
+                      class="underline decoration-transparent underline-offset-4 transition-colors hover:decoration-teal"
+                    >
+                      {item.title}
+                    </a>
+                  ) : (
+                    item.title
+                  )}
+                </h3>
+                {item.range && (
+                  <span class="text-sm tabular-nums text-ink-muted">
+                    {item.range}
+                  </span>
+                )}
+              </div>
+              <p class="mt-1.5 text-sm leading-[1.6] text-ink-muted">
+                {item.description}
+              </p>
+              {item.tags.length > 0 && (
+                <p class="mt-2 text-sm text-ink-muted">
+                  {item.tags.join(", ")}
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<dialog
+  id="work-lightbox"
+  class="m-auto max-w-[min(90vw,640px)] rounded-lg bg-paper p-0 backdrop:bg-ink/60"
+>
+  <form method="dialog">
+    <button
+      type="submit"
+      aria-label="Close"
+      class="absolute top-3 right-3 grid h-8 w-8 place-items-center rounded-full text-ink-muted hover:text-ink"
+    >
+      ✕
+    </button>
+  </form>
+  <img id="work-lightbox-img" src="" alt="" class="block w-full" />
+</dialog>
+
+<script>
+  const filterButtons = document.querySelectorAll<HTMLButtonElement>(
+    ".work-filter",
+  );
+  const rows = document.querySelectorAll<HTMLDivElement>(".work-row");
+
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      filterButtons.forEach((b) => {
+        b.classList.remove("is-active", "border-teal", "text-ink");
+        b.classList.add("border-transparent");
+      });
+      button.classList.add("is-active", "border-teal", "text-ink");
+      button.classList.remove("border-transparent");
+
+      const filter = button.dataset.filter;
+      rows.forEach((row) => {
+        const show = filter === "All" || row.dataset.category === filter;
+        row.classList.toggle("hidden", !show);
+      });
+    });
+  });
+
+  const lightbox = document.getElementById(
+    "work-lightbox",
+  ) as HTMLDialogElement | null;
+  const lightboxImg = document.getElementById(
+    "work-lightbox-img",
+  ) as HTMLImageElement | null;
+
+  document
+    .querySelectorAll<HTMLButtonElement>(".work-lightbox-trigger")
+    .forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const img = trigger.querySelector("img");
+        if (!img || !lightbox || !lightboxImg) return;
+        lightboxImg.src = img.src;
+        lightboxImg.alt = trigger.dataset.title ?? "";
+        lightbox.showModal();
+      });
+    });
+</script>

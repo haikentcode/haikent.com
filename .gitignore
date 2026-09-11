@@ -97,13 +97,15 @@ venv.bak/
 # Rope project settings
 .ropeproject
 
-# mkdocs documentation
-/site
-
-
 # mypy
 .mypy_cache/
 
 #mac
 .idea/*
 .DS_Store
+
+# Astro site source (site/dist is synced to the repo root, not committed itself)
+site/node_modules/
+site/dist/
+site/.astro/
+.playwright-mcp/

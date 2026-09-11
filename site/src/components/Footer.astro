@@ -1,0 +1,32 @@
+---
+const links = [
+  { label: "GitHub", href: "https://github.com/haikentcode" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/haikent" },
+  { label: "Twitter", href: "https://twitter.com/haikent_hitesh" },
+  { label: "YouTube", href: "https://www.youtube.com/c/hiteshkumar_haikent" },
+  { label: "Hackerrank", href: "https://www.hackerrank.com/haikent" },
+  { label: "Blog", href: "https://haikent.blogspot.in/" },
+];
+---
+
+<footer class="border-t border-spine py-10">
+  <div
+    class="flex flex-col gap-4 text-sm text-ink-muted sm:flex-row sm:items-center sm:justify-between"
+  >
+    <p>© {new Date().getFullYear()} Hitesh Regar</p>
+    <nav class="flex flex-wrap gap-x-5 gap-y-2">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener"
+            class="hover:text-ink"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</footer>

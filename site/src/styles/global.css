@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f6f5f1;
+  --color-paper-raised: #eeece4;
+  --color-ink: #1b1f2a;
+  --color-ink-muted: #5b606b;
+  --color-teal: #1e7a72;
+  --color-teal-soft: #e3efed;
+  --color-amber: #c98a2b;
+  --color-spine: rgb(27 31 42 / 0.16);
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+.dark {
+  --color-paper: #12151c;
+  --color-paper-raised: #1a1e28;
+  --color-ink: #ece9e2;
+  --color-ink-muted: #a3a8b4;
+  --color-teal: #4bab9c;
+  --color-teal-soft: #16302d;
+  --color-amber: #e0a949;
+  --color-spine: rgb(236 233 226 / 0.18);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes draw-spine {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.spine-draw {
+  transform-origin: top;
+  animation: draw-spine 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.rise-in {
+  animation: rise-in 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+::selection {
+  background-color: var(--color-teal-soft);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}

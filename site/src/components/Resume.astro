@@ -1,0 +1,107 @@
+---
+import SectionMark from "./SectionMark.astro";
+
+const experience = [
+  {
+    role: "Senior Software Engineer",
+    org: "Emtex Engineering Pvt. Ltd.",
+    place: "Gurugram, India",
+    range: "07/2019 — Present",
+    blurb: "India's largest e-commerce platform for industrial supplies.",
+    points: [
+      "Built marketplace tooling in Django and AngularJS, front and back end",
+      "Built the bidding panel in Django and Angular with NgRx/Store",
+    ],
+  },
+  {
+    role: "Software Developer, Catalog Team",
+    org: "Shopclues",
+    place: "Gurugram, India",
+    range: "06/2016 — 07/2019",
+    blurb: "Online marketplace owned by Clues Network Pvt. Ltd.",
+    points: [
+      "Built and designed the Mastercatalog tool, front and back end",
+      "Designed the feature/variant structure and its API",
+      "Built a product-classification algorithm across text and image",
+      "Built price-prediction and price-recommendation APIs",
+      "Built a product-weight prediction API to estimate shipping cost",
+    ],
+  },
+  {
+    role: "Software Developer Intern",
+    org: "Delhivery",
+    place: "Gurugram, India",
+    range: "05/2015 — 06/2015",
+    blurb: "",
+    points: [
+      "Solved the vendor SKU-coding problem in Python",
+      "Built an extra-slip generator in Django",
+    ],
+  },
+];
+
+const education = [
+  {
+    degree: "B.Tech, Computer Science and Engineering",
+    org: "Dr B. R. Ambedkar National Institute of Technology, Jalandhar",
+    range: "2012 — 2016",
+  },
+  {
+    degree: "10+2, PCM",
+    org: "Maharana Sr. Sec. School, Jahazpur",
+    range: "2009 — 2011",
+  },
+];
+---
+
+<section class="pb-16 sm:pb-20">
+  <SectionMark label="Resume" id="resume" />
+
+  <div class="space-y-10">
+    {
+      experience.map((job) => (
+        <div class="border-t border-spine pt-6 first:border-t-0 first:pt-0">
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+            <h3 class="text-[1.02rem] font-medium text-ink">
+              {job.role} · {job.org}
+            </h3>
+            <span class="text-sm tabular-nums text-ink-muted">
+              {job.range}
+            </span>
+          </div>
+          <p class="mt-1 text-sm text-ink-muted">{job.place}</p>
+          {job.blurb && (
+            <p class="mt-2 text-sm text-ink-muted">{job.blurb}</p>
+          )}
+          <ul class="mt-3 space-y-1.5">
+            {job.points.map((point) => (
+              <li class="flex gap-2.5 text-sm leading-[1.7] text-ink">
+                <span class="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-teal" />
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="mt-10 border-t border-spine pt-6">
+    <h3 class="text-sm font-medium text-ink">Education</h3>
+    <div class="mt-4 space-y-4">
+      {
+        education.map((item) => (
+          <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+            <div>
+              <p class="text-sm text-ink">{item.degree}</p>
+              <p class="mt-0.5 text-sm text-ink-muted">{item.org}</p>
+            </div>
+            <span class="text-sm tabular-nums text-ink-muted">
+              {item.range}
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

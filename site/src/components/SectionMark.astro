@@ -1,0 +1,16 @@
+---
+interface Props {
+  label: string;
+  id?: string;
+}
+const { label, id } = Astro.props;
+---
+
+<div id={id} class="relative mb-8 flex scroll-mt-24 items-baseline gap-4">
+  <span
+    class="absolute top-[0.65em] -left-6 h-px w-4 bg-spine sm:-left-8 sm:w-6"
+  ></span>
+  <h2 class="font-display text-[0.95rem] font-medium text-ink-muted">
+    {label}
+  </h2>
+</div>

@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import meImage from "../assets/me.jpg";
+
+const years = new Date().getFullYear() - 2016;
+---
+
+<section id="top" class="scroll-mt-24 pt-14 pb-16 sm:pt-20 sm:pb-20">
+  <div class="flex items-start gap-5 sm:gap-6">
+    <Image
+      src={meImage}
+      alt="Hitesh Regar"
+      width={88}
+      height={88}
+      class="mt-1 h-16 w-16 shrink-0 rounded-md object-cover sm:h-[88px] sm:w-[88px]"
+    />
+    <div>
+      <h1 class="font-display text-3xl font-semibold text-ink sm:text-4xl">
+        Hitesh Regar
+      </h1>
+      <p class="mt-1.5 text-[1.05rem] text-ink-muted">
+        Senior Full-Stack Software Engineer, Gurugram, India
+      </p>
+    </div>
+  </div>
+
+  <p class="mt-8 max-w-[640px] text-[1.05rem] leading-[1.75] text-ink">
+    I've spent the last {years} years building the systems marketplaces run on
+    — catalog and pricing tools at <span class="text-ink">Shopclues</span>,
+    bidding and marketplace platforms at <span class="text-ink">Emtex
+    Engineering</span>. Currently working across Django, Angular, and Go, with
+    a standing interest in the machine-learning side of classification and
+    pricing problems.
+  </p>
+
+  <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+    <a
+      href="mailto:haikenthk@gmail.com"
+      class="text-teal underline decoration-teal/40 underline-offset-4 hover:decoration-teal"
+    >
+      haikenthk@gmail.com
+    </a>
+    <a
+      href="/haikent.pdf"
+      class="text-teal underline decoration-teal/40 underline-offset-4 hover:decoration-teal"
+    >
+      Download résumé
+    </a>
+    <span class="text-ink-muted">NIT Jalandhar, Class of 2016</span>
+  </div>
+</section>
