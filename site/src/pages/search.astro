@@ -64,6 +64,28 @@ import Layout from "../layouts/Layout.astro";
       </button>
     </form>
 
+    <div
+      class="reveal mt-4 flex justify-center gap-2"
+      role="group"
+      aria-label="Search mode"
+      style="transition-delay: 140ms"
+    >
+      <button
+        type="button"
+        data-mode="any"
+        class="search-mode-btn is-active rounded-full bg-cyan px-4 py-1.5 font-mono text-xs text-void transition-colors"
+      >
+        Any word
+      </button>
+      <button
+        type="button"
+        data-mode="exact"
+        class="search-mode-btn glass-panel rounded-full px-4 py-1.5 font-mono text-xs text-ink-muted transition-colors hover:text-ink"
+      >
+        Exact phrase
+      </button>
+    </div>
+
     <p
       id="search-status"
       class="reveal mt-4 text-center font-mono text-xs text-ink-muted"
@@ -311,6 +333,34 @@ import Layout from "../layouts/Layout.astro";
     }
   }
 
+  // "Any word" OR-matches every word (with cross-script expansion, see
+  // expandQuery above); "Exact phrase" matches the input as one literal
+  // substring, mirroring the original tool's separate Syntax field.
+  let searchMode: "any" | "exact" = "any";
+  const modeButtons = Array.from(
+    document.querySelectorAll<HTMLButtonElement>(".search-mode-btn"),
+  );
+
+  modeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      searchMode = (button.dataset.mode as "any" | "exact") ?? "any";
+      modeButtons.forEach((b) => {
+        const active = b === button;
+        b.classList.toggle("is-active", active);
+        b.classList.toggle("bg-cyan", active);
+        b.classList.toggle("text-void", active);
+        b.classList.toggle("glass-panel", !active);
+        b.classList.toggle("text-ink-muted", !active);
+      });
+      if (input) {
+        input.placeholder =
+          searchMode === "exact"
+            ? "Search for an exact phrase…"
+            : "Search the archive…";
+      }
+    });
+  });
+
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!input || !status || !results) return;
@@ -322,8 +372,17 @@ import Layout from "../layouts/Layout.astro";
     results.innerHTML = "";
 
     try {
-      const { query, terms } = expandQuery(value);
-      const response = await fetch(`/search_api.php?query=${encodeURIComponent(query)}`);
+      let params: string;
+      let terms: string[];
+      if (searchMode === "exact") {
+        params = `query_exact=${encodeURIComponent(value)}`;
+        terms = [value];
+      } else {
+        const expanded = expandQuery(value);
+        params = `query=${encodeURIComponent(expanded.query)}`;
+        terms = expanded.terms;
+      }
+      const response = await fetch(`/search_api.php?${params}`);
       if (!response.ok) throw new Error("request failed");
       const data: Result[] = await response.json();
       renderResults(data, terms);
