@@ -404,10 +404,13 @@ import Layout from "../layouts/Layout.astro";
         url: pdfUrl(pdfName),
         // Scanned pages are often JPEG2000-encoded; without these, pdf.js
         // silently fails to decode the image and the page renders blank.
-        wasmUrl: "/pdfjs/wasm/",
-        cMapUrl: "/pdfjs/cmaps/",
+        // Must be fully-qualified: the worker's own base URL is a blob:
+        // URL (see ensureWorkerReady), so a path-only string can't resolve
+        // inside it.
+        wasmUrl: new URL("/pdfjs/wasm/", location.origin).href,
+        cMapUrl: new URL("/pdfjs/cmaps/", location.origin).href,
         cMapPacked: true,
-        standardFontDataUrl: "/pdfjs/standard_fonts/",
+        standardFontDataUrl: new URL("/pdfjs/standard_fonts/", location.origin).href,
       }).promise;
       if (myToken !== openToken) return;
       currentDoc = doc;
