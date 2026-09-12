@@ -36,6 +36,9 @@ import Layout from "../layouts/Layout.astro";
         Full-text search across scanned UPSC topper answer-copies — every
         page indexed and searchable, word by word.
       </p>
+      <p class="mt-2 font-mono text-xs text-ink-muted/70">
+        type in English or Hindi — "kitab" also finds किताब
+      </p>
     </div>
 
     <form
@@ -75,6 +78,82 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <script>
+  import Sanscript from "@indic-transliteration/sanscript";
+
+  const DEVANAGARI = /[ऀ-ॿ]/;
+  const LATIN_WORD = /^[a-zA-Z]+$/;
+
+  // Casual romanized Hindi ("kitab") is vowel-length ambiguous against the
+  // real spelling (किताब needs a long आ). Try every combination of
+  // single/doubled vowel at each ambiguous position and keep whatever
+  // Sanscript.js turns into valid-looking Devanagari, so the search casts a
+  // wide net instead of requiring one "correct" romanization.
+  function devanagariCandidates(word: string): string[] {
+    if (!LATIN_WORD.test(word)) return [];
+
+    const positions: number[] = [];
+    for (let i = 0; i < word.length; i++) {
+      const c = word[i].toLowerCase();
+      if ("aiu".includes(c) && word[i + 1]?.toLowerCase() !== c) {
+        positions.push(i);
+      }
+    }
+    const capped = positions.slice(0, 4);
+
+    const spellings = new Set<string>([word]);
+    for (let mask = 1; mask < 1 << capped.length; mask++) {
+      const chars = word.split("");
+      capped.forEach((pos, bit) => {
+        if (mask & (1 << bit)) chars[pos] += chars[pos];
+      });
+      spellings.add(chars.join(""));
+    }
+
+    const results = new Set<string>();
+    for (const spelling of spellings) {
+      try {
+        const devanagari = Sanscript.t(spelling, "itrans", "devanagari").replace(/्$/, "");
+        if (devanagari && devanagari !== spelling) results.add(devanagari);
+      } catch {
+        // ignore transliteration failures on unusual input
+      }
+    }
+    return [...results];
+  }
+
+  function romanize(word: string): string | null {
+    if (!DEVANAGARI.test(word)) return null;
+    try {
+      return Sanscript.t(word, "devanagari", "itrans") || null;
+    } catch {
+      return null;
+    }
+  }
+
+  // Expands the typed query with cross-script candidates so "kitab" also
+  // searches किताब, and किताब also searches kitAb, without needing the
+  // user to know which script the archive stores a given page in.
+  function expandQuery(raw: string): { query: string; terms: string[] } {
+    const words = raw.trim().split(/\s+/).filter(Boolean);
+    const extras = new Set<string>();
+
+    for (const word of words) {
+      if (extras.size >= 20) break;
+      const roman = romanize(word);
+      if (roman) {
+        extras.add(roman);
+        continue;
+      }
+      for (const candidate of devanagariCandidates(word)) {
+        extras.add(candidate);
+        if (extras.size >= 20) break;
+      }
+    }
+
+    const terms = [...words, ...extras];
+    return { query: terms.join(" "), terms };
+  }
+
   const form = document.getElementById("search-form") as HTMLFormElement | null;
   const input = document.getElementById("search-input") as HTMLInputElement | null;
   const status = document.getElementById("search-status");
@@ -151,11 +230,11 @@ import Layout from "../layouts/Layout.astro";
     results.innerHTML = "";
 
     try {
-      const response = await fetch(`/search_api.php?query=${encodeURIComponent(value)}`);
+      const { query, terms } = expandQuery(value);
+      const response = await fetch(`/search_api.php?query=${encodeURIComponent(query)}`);
       if (!response.ok) throw new Error("request failed");
       const data: Result[] = await response.json();
-      const words = value.split(/\s+/).filter(Boolean);
-      renderResults(data, words);
+      renderResults(data, terms);
     } catch {
       status.textContent = "> transmission failed — try again";
     }

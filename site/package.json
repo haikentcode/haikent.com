@@ -14,6 +14,7 @@
     "deploy": "astro build && node scripts/sync-to-root.mjs"
   },
   "dependencies": {
+    "@indic-transliteration/sanscript": "^1.3.3",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.2",
     "tailwindcss": "^4.3.3"
