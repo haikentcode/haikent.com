@@ -400,7 +400,15 @@ import Layout from "../layouts/Layout.astro";
     try {
       await ensureWorkerReady();
       if (myToken !== openToken) return; // a newer openViewer call has since taken over
-      const doc = await getDocument({ url: pdfUrl(pdfName) }).promise;
+      const doc = await getDocument({
+        url: pdfUrl(pdfName),
+        // Scanned pages are often JPEG2000-encoded; without these, pdf.js
+        // silently fails to decode the image and the page renders blank.
+        wasmUrl: "/pdfjs/wasm/",
+        cMapUrl: "/pdfjs/cmaps/",
+        cMapPacked: true,
+        standardFontDataUrl: "/pdfjs/standard_fonts/",
+      }).promise;
       if (myToken !== openToken) return;
       currentDoc = doc;
       totalPages = doc.numPages;
