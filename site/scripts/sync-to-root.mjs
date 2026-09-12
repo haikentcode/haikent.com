@@ -15,8 +15,6 @@ const PROTECTED = new Set([
   "contact.php",
   "search.php",
   "search_api.php",
-  "scopy.php",
-  "scopy",
   "pdf_text.db",
   "old_db_bkp",
   "old",

@@ -8,6 +8,7 @@ import pianoImage from "../assets/portfolio-3.jpg";
 const categoryColors: Record<string, string> = {
   IT: "var(--color-cyan)",
   Music: "var(--color-rose)",
+  Tools: "var(--color-amber)",
 };
 
 const items = [
@@ -74,6 +75,17 @@ const items = [
     icon: '<path d="M4 8V5a1 1 0 0 1 1-1h3M20 8V5a1 1 0 0 0-1-1h-3M4 16v3a1 1 0 0 0 1 1h3M20 16v3a1 1 0 0 1-1 1h-3"/><rect x="8" y="8" width="8" height="8" rx="1"/>',
   },
   {
+    title: "PDF Scopy",
+    category: "Tools",
+    range: "",
+    description:
+      "Full-text search across scanned UPSC topper answer-copies, indexed page by page.",
+    tags: ["PHP", "SQLite", "Astro"],
+    link: "/search.html",
+    image: null,
+    icon: '<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>',
+  },
+  {
     title: "Guitar",
     category: "Music",
     range: "",
@@ -93,7 +105,7 @@ const items = [
   },
 ];
 
-const filters = ["All", "IT", "Music"];
+const filters = ["All", "IT", "Tools", "Music"];
 ---
 
 <section class="relative mx-auto flex min-h-screen max-w-[1100px] flex-col justify-center px-6 py-24">
