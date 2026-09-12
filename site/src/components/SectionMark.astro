@@ -1,16 +1,26 @@
 ---
 interface Props {
   label: string;
+  eyebrow: string;
   id?: string;
+  color?: string;
 }
-const { label, id } = Astro.props;
+const { label, eyebrow, id, color = "var(--color-cyan)" } = Astro.props;
 ---
 
-<div id={id} class="relative mb-8 flex scroll-mt-24 items-baseline gap-4">
-  <span
-    class="absolute top-[0.65em] -left-6 h-px w-4 bg-spine sm:-left-8 sm:w-6"
-  ></span>
-  <h2 class="font-display text-[0.95rem] font-medium text-ink-muted">
+<div id={id} class="reveal mb-10 scroll-mt-24 text-center">
+  <p
+    class="font-mono text-xs tracking-[0.25em]"
+    style={`color: ${color}`}
+  >
+    {eyebrow}
+  </p>
+  <h2 class="mt-2 font-display text-3xl font-bold text-ink sm:text-4xl">
     {label}
   </h2>
+  <div
+    class="mx-auto mt-4 h-px w-16 rounded-full"
+    style={`background: linear-gradient(90deg, transparent, ${color}, transparent)`}
+  >
+  </div>
 </div>

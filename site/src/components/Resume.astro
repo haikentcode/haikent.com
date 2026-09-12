@@ -3,39 +3,63 @@ import SectionMark from "./SectionMark.astro";
 
 const experience = [
   {
-    role: "Senior Software Engineer",
-    org: "Emtex Engineering Pvt. Ltd.",
-    place: "Gurugram, India",
-    range: "07/2019 — Present",
-    blurb: "India's largest e-commerce platform for industrial supplies.",
+    role: "Senior Full-Stack Engineer",
+    org: "SurveyMonkey",
+    place: "Bengaluru, India",
+    range: "02/2024 — Present",
+    blurb: "Global survey and customer-feedback platform.",
+    color: "var(--color-cyan)",
+    points: [],
+  },
+  {
+    role: "Full-Stack Engineer",
+    org: "APT Portfolio",
+    place: "Delhi, India",
+    range: "07/2021 — 09/2023",
+    blurb: "Quantitative trading firm.",
+    color: "var(--color-violet)",
     points: [
-      "Built marketplace tooling in Django and AngularJS, front and back end",
-      "Built the bidding panel in Django and Angular with NgRx/Store",
+      "Engineered a risk-management system and a Protobuf-based messaging layer for real-time trade monitoring, using Django, DRF, and AsyncIO",
+      "Built a trading-performance analytics dashboard and data-visualization tools in React and Redux",
+      "Delivered a cross-platform trading application using Electron",
     ],
   },
   {
-    role: "Software Developer, Catalog Team",
-    org: "Shopclues",
+    role: "Senior Software Engineer",
+    org: "Industrybuying.com",
+    place: "Delhi, India",
+    range: "07/2019 — 06/2021",
+    blurb: "India's largest e-commerce platform for industrial supplies.",
+    color: "var(--color-rose)",
+    points: [
+      "Integrated payment gateway (PayU) and logistics (Shiprocket) APIs to automate order fulfillment",
+      "Led development of a B2B logistics platform in Angular to streamline post-order workflows",
+      "Designed and built a bidding panel in Django and Angular to improve buyer-seller engagement",
+    ],
+  },
+  {
+    role: "Software Engineer",
+    org: "ShopClues",
     place: "Gurugram, India",
     range: "06/2016 — 07/2019",
-    blurb: "Online marketplace owned by Clues Network Pvt. Ltd.",
+    blurb: "Consumer e-commerce marketplace.",
+    color: "var(--color-emerald)",
     points: [
-      "Built and designed the Mastercatalog tool, front and back end",
-      "Designed the feature/variant structure and its API",
-      "Built a product-classification algorithm across text and image",
-      "Built price-prediction and price-recommendation APIs",
-      "Built a product-weight prediction API to estimate shipping cost",
+      "Engineered a product-classification and duplicate-detection system using Django, scikit-learn, RabbitMQ, and MongoDB",
+      "Developed a price-prediction engine with NumPy, Pandas, and scikit-learn to recommend optimal pricing",
+      "Built a weight-prediction model in TensorFlow to reduce shipping costs",
     ],
   },
   {
-    role: "Software Developer Intern",
+    role: "Intern",
     org: "Delhivery",
     place: "Gurugram, India",
-    range: "05/2015 — 06/2015",
+    range: "06/2015 — 07/2015",
     blurb: "",
+    color: "var(--color-amber)",
     points: [
-      "Solved the vendor SKU-coding problem in Python",
-      "Built an extra-slip generator in Django",
+      "Resolved a vendor SKU-coding issue using Python",
+      "Built an automated extra-slip generator in Django",
     ],
   },
 ];
@@ -54,51 +78,76 @@ const education = [
 ];
 ---
 
-<section class="pb-16 sm:pb-20">
-  <SectionMark label="Resume" id="resume" />
+<section class="relative mx-auto flex min-h-screen max-w-[820px] flex-col justify-center px-6 py-24">
+  <SectionMark
+    label="Mission Log"
+    eyebrow="RESUME"
+    id="resume"
+    color="var(--color-violet)"
+  />
 
-  <div class="space-y-10">
-    {
-      experience.map((job) => (
-        <div class="border-t border-spine pt-6 first:border-t-0 first:pt-0">
-          <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-            <h3 class="text-[1.02rem] font-medium text-ink">
-              {job.role} · {job.org}
-            </h3>
-            <span class="text-sm tabular-nums text-ink-muted">
-              {job.range}
-            </span>
+  <div class="relative pl-10 sm:pl-12">
+    <div
+      class="absolute top-1 bottom-1 left-[5px] w-px sm:left-[7px]"
+      style="background: linear-gradient(to bottom, var(--color-cyan), var(--color-violet), var(--color-rose), var(--color-emerald), color-mix(in srgb, var(--color-amber) 40%, transparent));"
+    >
+    </div>
+
+    <div class="space-y-8">
+      {
+        experience.map((job) => (
+          <div class="reveal relative">
+            <span
+              class="absolute top-2 -left-10 h-3 w-3 rounded-full sm:-left-12"
+              style={`background-color: ${job.color}; box-shadow: 0 0 12px ${job.color}`}
+            />
+            <div class="glass-panel rounded-3xl p-6 sm:p-7">
+              <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <h3 class="text-lg font-semibold text-ink">{job.role}</h3>
+                <span
+                  class="rounded-full px-3 py-1 font-mono text-xs"
+                  style={`background-color: color-mix(in srgb, ${job.color} 15%, transparent); color: ${job.color}`}
+                >
+                  {job.range}
+                </span>
+              </div>
+              <p class="mt-1 text-sm font-medium text-ink-muted">
+                {job.org} · {job.place}
+              </p>
+              {job.blurb && (
+                <p class="mt-2 text-sm text-ink-muted">{job.blurb}</p>
+              )}
+              {job.points.length > 0 && (
+                <ul class="mt-4 space-y-2">
+                  {job.points.map((point) => (
+                    <li class="flex gap-2.5 text-sm leading-[1.7] text-ink-muted">
+                      <span
+                        class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
+                        style={`background-color: ${job.color}`}
+                      />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
-          <p class="mt-1 text-sm text-ink-muted">{job.place}</p>
-          {job.blurb && (
-            <p class="mt-2 text-sm text-ink-muted">{job.blurb}</p>
-          )}
-          <ul class="mt-3 space-y-1.5">
-            {job.points.map((point) => (
-              <li class="flex gap-2.5 text-sm leading-[1.7] text-ink">
-                <span class="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-teal" />
-                <span>{point}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))
-    }
+        ))
+      }
+    </div>
   </div>
 
-  <div class="mt-10 border-t border-spine pt-6">
-    <h3 class="text-sm font-medium text-ink">Education</h3>
+  <div class="reveal glass-panel mt-10 rounded-3xl p-6 sm:p-8">
+    <h3 class="font-mono text-xs tracking-[0.2em] text-amber">EDUCATION</h3>
     <div class="mt-4 space-y-4">
       {
         education.map((item) => (
           <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
             <div>
-              <p class="text-sm text-ink">{item.degree}</p>
+              <p class="text-sm font-medium text-ink">{item.degree}</p>
               <p class="mt-0.5 text-sm text-ink-muted">{item.org}</p>
             </div>
-            <span class="text-sm tabular-nums text-ink-muted">
-              {item.range}
-            </span>
+            <span class="font-mono text-xs text-ink-muted">{item.range}</span>
           </div>
         ))
       }

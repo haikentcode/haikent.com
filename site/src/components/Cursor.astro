@@ -1,0 +1,95 @@
+---
+---
+
+<div
+  id="cursor-glow"
+  class="pointer-events-none fixed top-0 left-0 z-40 hidden h-[420px] w-[420px] rounded-full opacity-0 transition-opacity duration-500"
+  style="background: radial-gradient(circle, rgba(34,211,238,0.09), transparent 70%);"
+>
+</div>
+<div
+  id="cursor-ring"
+  class="pointer-events-none fixed top-0 left-0 z-40 hidden h-9 w-9 rounded-full border border-cyan/70 opacity-0 transition-[opacity,width,height] duration-300"
+>
+  <span
+    id="cursor-label"
+    class="absolute inset-0 grid place-items-center font-mono text-[0.55rem] tracking-wide text-cyan opacity-0 transition-opacity duration-200"
+  ></span>
+</div>
+<div
+  id="cursor-dot"
+  class="pointer-events-none fixed top-0 left-0 z-40 hidden h-1.5 w-1.5 rounded-full bg-cyan opacity-0 transition-opacity duration-300"
+>
+</div>
+
+<script>
+  const canActivate = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const glow = document.getElementById("cursor-glow");
+  const ring = document.getElementById("cursor-ring");
+  const dot = document.getElementById("cursor-dot");
+  const label = document.getElementById("cursor-label");
+
+  if (canActivate && !reduceMotion && glow && ring && dot && label) {
+    document.documentElement.classList.add("has-custom-cursor");
+    [glow, ring, dot].forEach((el) => el.classList.remove("hidden"));
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+    let glowX = mouseX;
+    let glowY = mouseY;
+    let hovering = false;
+    let visible = false;
+
+    window.addEventListener("pointermove", (event) => {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+      if (!visible) {
+        visible = true;
+        glow.style.opacity = "1";
+        ring.style.opacity = "1";
+        dot.style.opacity = "1";
+      }
+    });
+
+    window.addEventListener("pointerleave", () => {
+      visible = false;
+      glow.style.opacity = "0";
+      ring.style.opacity = "0";
+      dot.style.opacity = "0";
+    });
+
+    function setHover(target: Element | null) {
+      const el = target?.closest<HTMLElement>("a, button, [data-cursor]");
+      hovering = Boolean(el);
+      ring.style.width = hovering ? "3.5rem" : "2.25rem";
+      ring.style.height = hovering ? "3.5rem" : "2.25rem";
+      const text = el?.dataset.cursor;
+      label.textContent = text ?? "";
+      label.style.opacity = text ? "1" : "0";
+    }
+
+    document.addEventListener("pointerover", (event) => setHover(event.target as Element));
+    document.addEventListener("pointerout", (event) => {
+      const related = (event as PointerEvent).relatedTarget as Element | null;
+      if (!related?.closest?.("a, button, [data-cursor]")) setHover(null);
+    });
+
+    function loop() {
+      ringX += (mouseX - ringX) * 0.22;
+      ringY += (mouseY - ringY) * 0.22;
+      glowX += (mouseX - glowX) * 0.08;
+      glowY += (mouseY - glowY) * 0.08;
+
+      ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+      dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+      glow.style.transform = `translate(${glowX}px, ${glowY}px) translate(-50%, -50%)`;
+
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  }
+</script>

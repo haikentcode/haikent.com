@@ -1,0 +1,28 @@
+---
+---
+
+<div
+  class="fixed top-0 right-0 left-0 z-40 h-[2px] bg-white/5"
+  aria-hidden="true"
+>
+  <div
+    id="scroll-progress"
+    class="h-full w-0 bg-gradient-to-r from-cyan via-violet to-rose shadow-[0_0_12px_rgba(34,211,238,0.8)]"
+  >
+  </div>
+</div>
+
+<script>
+  const bar = document.getElementById("scroll-progress");
+
+  function update() {
+    if (!bar) return;
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollable > 0 ? window.scrollY / scrollable : 0;
+    bar.style.width = `${Math.min(100, Math.max(0, progress * 100))}%`;
+  }
+
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+</script>

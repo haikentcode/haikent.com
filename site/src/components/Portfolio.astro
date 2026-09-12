@@ -5,6 +5,11 @@ import lsrsImage from "../assets/portfolio-1.jpg";
 import guitarImage from "../assets/portfolio-2.jpg";
 import pianoImage from "../assets/portfolio-3.jpg";
 
+const categoryColors: Record<string, string> = {
+  IT: "var(--color-cyan)",
+  Music: "var(--color-rose)",
+};
+
 const items = [
   {
     title: "lsrs.in",
@@ -24,6 +29,7 @@ const items = [
     tags: ["PHP", "Astro", "Tailwind CSS"],
     link: null,
     image: null,
+    icon: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 4 6 4 9s-1.5 6.5-4 9c-2.5-2.5-4-6-4-9s1.5-6.5 4-9Z"/>',
   },
   {
     title: "digitalEye",
@@ -34,6 +40,7 @@ const items = [
     tags: ["Python", "OpenCV"],
     link: "https://github.com/haikentcode/digitalEye",
     image: null,
+    icon: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
   },
   {
     title: "Snake Game and other",
@@ -43,6 +50,7 @@ const items = [
     tags: ["C++"],
     link: "https://github.com/haikentcode/codeislife",
     image: null,
+    icon: '<rect x="2" y="7" width="20" height="10" rx="5"/><path d="M7 10v4M5 12h4M16.5 10.5h.01M19 12.5h.01"/>',
   },
   {
     title: "Angie",
@@ -52,6 +60,7 @@ const items = [
     tags: ["Arduino", "IoT"],
     link: null,
     image: null,
+    icon: '<path d="M4 16l1.1-4.4A2 2 0 0 1 7 10h10a2 2 0 0 1 1.9 1.6L20 16"/><path d="M3 16h18"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/>',
   },
   {
     title: "Image & text classification",
@@ -62,6 +71,7 @@ const items = [
     tags: ["Keras", "FastText", "StarSpace"],
     link: null,
     image: null,
+    icon: '<path d="M4 8V5a1 1 0 0 1 1-1h3M20 8V5a1 1 0 0 0-1-1h-3M4 16v3a1 1 0 0 0 1 1h3M20 16v3a1 1 0 0 1-1 1h-3"/><rect x="8" y="8" width="8" height="8" rx="1"/>',
   },
   {
     title: "Guitar",
@@ -86,18 +96,24 @@ const items = [
 const filters = ["All", "IT", "Music"];
 ---
 
-<section class="pb-16 sm:pb-20">
-  <SectionMark label="Work" id="work" />
+<section class="relative mx-auto flex min-h-screen max-w-[1100px] flex-col justify-center px-6 py-24">
+  <SectionMark label="Docking Bay" eyebrow="WORK" id="work" color="var(--color-cyan)" />
 
-  <div class="mb-6 flex gap-5 text-sm" role="group" aria-label="Filter work by category">
+  <div
+    class="reveal mb-8 flex justify-center gap-2"
+    role="group"
+    aria-label="Filter work by category"
+  >
     {
       filters.map((filter, i) => (
         <button
           type="button"
           data-filter={filter}
           class:list={[
-            "work-filter border-b border-transparent pb-1 text-ink-muted transition-colors hover:text-ink",
-            i === 0 && "is-active border-teal text-ink",
+            "work-filter rounded-full px-4 py-1.5 font-mono text-xs tracking-wide transition-colors",
+            i === 0
+              ? "is-active bg-cyan text-void"
+              : "glass-panel text-ink-muted hover:text-ink",
           ]}
         >
           {filter}
@@ -106,79 +122,109 @@ const filters = ["All", "IT", "Music"];
     }
   </div>
 
-  <div class="divide-y divide-spine border-t border-spine">
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     {
-      items.map((item) => (
-        <div class="work-row py-5" data-category={item.category}>
-          <div class="flex gap-4">
-            {item.image && (
-              <button
-                type="button"
-                class="work-lightbox-trigger group h-16 w-16 shrink-0 overflow-hidden rounded-md sm:h-20 sm:w-20"
-                data-title={item.title}
-              >
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  width={160}
-                  height={160}
-                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </button>
-            )}
-            <div class="min-w-0 flex-1">
-              <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                <h3 class="text-[1.02rem] font-medium text-ink">
-                  {item.link ? (
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener"
-                      class="underline decoration-transparent underline-offset-4 transition-colors hover:decoration-teal"
+      items.map((item) => {
+        const color = categoryColors[item.category];
+        const Wrapper = item.link ? "a" : "div";
+        return (
+          <div class="work-row reveal" data-category={item.category}>
+            <Wrapper
+              href={item.link ?? undefined}
+              target={item.link ? "_blank" : undefined}
+              rel={item.link ? "noopener" : undefined}
+              data-cursor={item.link ? "VIEW" : undefined}
+              class="tilt-card glass-panel group block h-full overflow-hidden rounded-3xl transition-shadow"
+              style={`--glow: ${color}`}
+            >
+              <div class="relative h-40 w-full overflow-hidden">
+                {item.image ? (
+                  <>
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={480}
+                      height={320}
+                      class="h-full w-full object-cover"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-void/70 via-void/10 to-transparent" />
+                  </>
+                ) : (
+                  <div
+                    class="relative flex h-full w-full items-center justify-center overflow-hidden"
+                    style={`background: color-mix(in srgb, ${color} 9%, #05060c)`}
+                  >
+                    <div
+                      class="absolute inset-0 opacity-40"
+                      style={`background-image: radial-gradient(color-mix(in srgb, ${color} 55%, transparent) 1px, transparent 1.5px); background-size: 16px 16px;`}
                     >
-                      {item.title}
-                    </a>
-                  ) : (
-                    item.title
-                  )}
-                </h3>
-                {item.range && (
-                  <span class="text-sm tabular-nums text-ink-muted">
-                    {item.range}
-                  </span>
+                    </div>
+                    <div
+                      class="absolute h-24 w-24 rounded-full blur-2xl"
+                      style={`background-color: color-mix(in srgb, ${color} 35%, transparent)`}
+                    >
+                    </div>
+                    <span
+                      class="relative grid h-14 w-14 place-items-center rounded-full border"
+                      style={`border-color: color-mix(in srgb, ${color} 40%, transparent); background-color: color-mix(in srgb, #05060c 60%, transparent)`}
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke={color}
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="h-6 w-6"
+                        set:html={item.icon}
+                      />
+                    </span>
+                  </div>
                 )}
               </div>
-              <p class="mt-1.5 text-sm leading-[1.6] text-ink-muted">
-                {item.description}
-              </p>
-              {item.tags.length > 0 && (
-                <p class="mt-2 text-sm text-ink-muted">
-                  {item.tags.join(", ")}
+              <div class="p-5">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <h3 class="text-base font-semibold text-ink">
+                    {item.title}
+                  </h3>
+                  <span
+                    class="rounded-full px-2.5 py-0.5 font-mono text-[0.65rem]"
+                    style={`background-color: color-mix(in srgb, ${color} 15%, transparent); color: ${color}`}
+                  >
+                    {item.category}
+                  </span>
+                </div>
+                <p class="mt-2 text-sm leading-[1.6] text-ink-muted">
+                  {item.description}
                 </p>
-              )}
-            </div>
+                {item.tags.length > 0 && (
+                  <p class="mt-3 text-xs text-ink-muted">
+                    {item.tags.join(" · ")}
+                  </p>
+                )}
+                {item.range && (
+                  <p class="mt-2 font-mono text-xs text-ink-muted">
+                    {item.range}
+                  </p>
+                )}
+              </div>
+            </Wrapper>
           </div>
-        </div>
-      ))
+        );
+      })
     }
   </div>
 </section>
 
-<dialog
-  id="work-lightbox"
-  class="m-auto max-w-[min(90vw,640px)] rounded-lg bg-paper p-0 backdrop:bg-ink/60"
->
-  <form method="dialog">
-    <button
-      type="submit"
-      aria-label="Close"
-      class="absolute top-3 right-3 grid h-8 w-8 place-items-center rounded-full text-ink-muted hover:text-ink"
-    >
-      ✕
-    </button>
-  </form>
-  <img id="work-lightbox-img" src="" alt="" class="block w-full" />
-</dialog>
+<style>
+  .tilt-card {
+    will-change: transform;
+  }
+  .tilt-card:hover {
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--glow) 40%, transparent),
+      0 20px 60px -20px color-mix(in srgb, var(--glow) 45%, transparent);
+  }
+</style>
 
 <script>
   const filterButtons = document.querySelectorAll<HTMLButtonElement>(
@@ -189,11 +235,11 @@ const filters = ["All", "IT", "Music"];
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
       filterButtons.forEach((b) => {
-        b.classList.remove("is-active", "border-teal", "text-ink");
-        b.classList.add("border-transparent");
+        b.classList.remove("is-active", "bg-cyan", "text-void");
+        b.classList.add("glass-panel", "text-ink-muted");
       });
-      button.classList.add("is-active", "border-teal", "text-ink");
-      button.classList.remove("border-transparent");
+      button.classList.add("is-active", "bg-cyan", "text-void");
+      button.classList.remove("glass-panel", "text-ink-muted");
 
       const filter = button.dataset.filter;
       rows.forEach((row) => {
@@ -203,22 +249,22 @@ const filters = ["All", "IT", "Music"];
     });
   });
 
-  const lightbox = document.getElementById(
-    "work-lightbox",
-  ) as HTMLDialogElement | null;
-  const lightboxImg = document.getElementById(
-    "work-lightbox-img",
-  ) as HTMLImageElement | null;
+  const canHover = window.matchMedia("(hover: hover)").matches;
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
 
-  document
-    .querySelectorAll<HTMLButtonElement>(".work-lightbox-trigger")
-    .forEach((trigger) => {
-      trigger.addEventListener("click", () => {
-        const img = trigger.querySelector("img");
-        if (!img || !lightbox || !lightboxImg) return;
-        lightboxImg.src = img.src;
-        lightboxImg.alt = trigger.dataset.title ?? "";
-        lightbox.showModal();
+  if (canHover && !reduceMotion) {
+    document.querySelectorAll<HTMLElement>(".tilt-card").forEach((card) => {
+      card.addEventListener("pointermove", (event) => {
+        const rect = card.getBoundingClientRect();
+        const px = (event.clientX - rect.left) / rect.width - 0.5;
+        const py = (event.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `perspective(900px) rotateX(${(-py * 8).toFixed(2)}deg) rotateY(${(px * 8).toFixed(2)}deg) translateY(-4px)`;
+      });
+      card.addEventListener("pointerleave", () => {
+        card.style.transform = "";
       });
     });
+  }
 </script>

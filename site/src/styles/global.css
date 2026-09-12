@@ -1,66 +1,248 @@
 @import "tailwindcss";
 
 @theme {
-  --color-paper: #f6f5f1;
-  --color-paper-raised: #eeece4;
-  --color-ink: #1b1f2a;
-  --color-ink-muted: #5b606b;
-  --color-teal: #1e7a72;
-  --color-teal-soft: #e3efed;
-  --color-amber: #c98a2b;
-  --color-spine: rgb(27 31 42 / 0.16);
+  --color-void: #05060c;
+  --color-ink: #eef1fb;
+  --color-ink-muted: #93a0c2;
+  --color-glow-border: rgba(148, 190, 255, 0.16);
+
+  --color-cyan: #22d3ee;
+  --color-cyan-soft: rgba(34, 211, 238, 0.14);
+  --color-violet: #a78bfa;
+  --color-violet-soft: rgba(167, 139, 250, 0.14);
+  --color-emerald: #34d399;
+  --color-emerald-soft: rgba(52, 211, 153, 0.14);
+  --color-amber: #fbbf24;
+  --color-amber-soft: rgba(251, 191, 36, 0.14);
+  --color-rose: #f472b6;
+  --color-rose-soft: rgba(244, 114, 182, 0.14);
 
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
-}
-
-.dark {
-  --color-paper: #12151c;
-  --color-paper-raised: #1a1e28;
-  --color-ink: #ece9e2;
-  --color-ink-muted: #a3a8b4;
-  --color-teal: #4bab9c;
-  --color-teal-soft: #16302d;
-  --color-amber: #e0a949;
-  --color-spine: rgb(236 233 226 / 0.18);
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--color-void);
 }
 
-@keyframes draw-spine {
-  from {
-    transform: scaleY(0);
+body {
+  /* No background-color here on purpose: body is a normal stacking-context
+     participant (not the root), so an opaque background on it would paint
+     *after* (on top of) the fixed z-[-10] Starscape/EarthHorizon layers,
+     hiding them completely. html's background above covers the same base
+     color and paints first, before any negative z-index content. */
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+::selection {
+  background-color: var(--color-cyan-soft);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Glass HUD panel used throughout every section */
+.glass-panel {
+  background: linear-gradient(
+    165deg,
+    rgba(18, 22, 38, 0.72),
+    rgba(10, 12, 22, 0.55)
+  );
+  border: 1px solid var(--color-glow-border);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+}
+
+/* Scroll-reveal: sections/cards fade + rise once when they enter view */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 900ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes nebula-drift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
   }
-  to {
-    transform: scaleY(1);
+  50% {
+    transform: translate(3%, -4%) scale(1.08);
   }
 }
 
-@keyframes rise-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.55;
   }
-  to {
+  50% {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
-.spine-draw {
-  transform-origin: top;
-  animation: draw-spine 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.animate-nebula {
+  animation: nebula-drift 22s ease-in-out infinite;
 }
 
-.rise-in {
-  animation: rise-in 700ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.animate-pulse-glow {
+  animation: pulse-glow 2.6s ease-in-out infinite;
+}
+
+@keyframes orbit-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-orbit {
+  animation: orbit-spin 14s linear infinite;
+}
+
+.animate-orbit-slow {
+  animation: orbit-spin-reverse 22s linear infinite;
+}
+
+@keyframes bird-fly {
+  0% {
+    transform: translate(-8vw, 6px);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(50vw, -10px);
+  }
+  92% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(108vw, 6px);
+    opacity: 0;
+  }
+}
+
+.animate-bird {
+  animation: bird-fly linear infinite;
+}
+
+@keyframes note-rise {
+  0% {
+    transform: translateY(0) rotate(-4deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.85;
+  }
+  85% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-120px) rotate(6deg);
+    opacity: 0;
+  }
+}
+
+.animate-note {
+  animation: note-rise 6s ease-in infinite;
+}
+
+@keyframes wave-shimmer {
+  0%, 100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}
+
+.animate-wave {
+  animation: wave-shimmer 4s ease-in-out infinite;
+}
+
+@keyframes scanline-sweep {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.5;
+  }
+  92% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+.animate-scanline {
+  animation: scanline-sweep 9s ease-in-out infinite;
+}
+
+@keyframes boot-flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 0.4;
+  }
+  55% {
+    opacity: 0.9;
+  }
+}
+
+.animate-boot-flicker {
+  animation: boot-flicker 180ms steps(2) 2;
+}
+
+[data-magnetic] {
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-block;
+}
+
+/* Custom cursor: only engages once JS confirms a fine pointer + no reduced motion */
+.has-custom-cursor {
+  cursor: none;
+}
+
+.has-custom-cursor a,
+.has-custom-cursor button {
+  cursor: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
@@ -69,18 +251,14 @@ html {
   }
 }
 
-body {
-  background-color: var(--color-paper);
-  color: var(--color-ink);
-  font-family: var(--font-body);
+/* Thin scrollbar to match the HUD feel */
+::-webkit-scrollbar {
+  width: 10px;
 }
-
-::selection {
-  background-color: var(--color-teal-soft);
-  color: var(--color-ink);
+::-webkit-scrollbar-track {
+  background: var(--color-void);
 }
-
-:focus-visible {
-  outline: 2px solid var(--color-teal);
-  outline-offset: 2px;
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 190, 255, 0.25);
+  border-radius: 999px;
 }

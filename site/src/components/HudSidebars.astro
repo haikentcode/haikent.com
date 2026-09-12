@@ -1,0 +1,129 @@
+---
+const logLines = [
+  "> calibrating trajectory vector",
+  "> uplink to catalog cluster: stable",
+  "> analyzing packet 0x4F2A19",
+  "> price model gradient converging",
+  "> classifying inbound telemetry",
+  "> sync: marketplace-shard-07",
+  "> queue depth nominal — 0 dropped",
+  "> rendering constellation map",
+  "> crew log checksum verified",
+  "> holding orbit at 408km",
+];
+---
+
+<div
+  class="pointer-events-none fixed inset-y-0 left-0 z-20 hidden w-[168px] flex-col justify-center gap-8 pl-6 2xl:flex"
+  aria-hidden="true"
+>
+  <div class="glass-panel rounded-2xl p-4">
+    <p class="font-mono text-[0.6rem] tracking-[0.2em] text-cyan/70">
+      SYSTEM STATUS
+    </p>
+    <canvas id="hud-sparkline" width="150" height="44" class="mt-3 w-full"
+    ></canvas>
+    <p class="mt-3 font-mono text-[0.6rem] leading-relaxed text-ink-muted">
+      LAT 28.4595&deg; N<br />
+      LON 77.0266&deg; E<br />
+      ALT 408 KM
+    </p>
+  </div>
+
+  <div class="relative mx-auto h-24 w-24">
+    <div
+      class="animate-orbit absolute inset-0 rounded-full border border-cyan/20"
+      style="background: conic-gradient(from 0deg, rgba(34,211,238,0.18), transparent 35%);"
+    >
+    </div>
+    <div class="absolute inset-3 rounded-full border border-white/10"></div>
+    <span class="absolute top-2 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-violet"
+    ></span>
+    <span class="absolute top-1/2 right-3 h-1 w-1 -translate-y-1/2 rounded-full bg-cyan"
+    ></span>
+  </div>
+</div>
+
+<div
+  class="pointer-events-none fixed inset-y-0 right-0 z-20 hidden w-[190px] items-center justify-center pr-6 2xl:flex"
+  aria-hidden="true"
+>
+  <div class="glass-panel h-[220px] w-full overflow-hidden rounded-2xl p-4">
+    <p class="font-mono text-[0.6rem] tracking-[0.2em] text-violet/70">
+      TRANSMISSION LOG
+    </p>
+    <div class="relative mt-3 h-[150px] overflow-hidden">
+      <div class="log-scroll absolute inset-x-0 top-0 space-y-2.5">
+        {
+          [...logLines, ...logLines].map((line) => (
+            <p class="font-mono text-[0.6rem] leading-relaxed text-ink-muted">
+              {line}
+            </p>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .log-scroll {
+    animation: log-scroll 22s linear infinite;
+  }
+
+  @keyframes log-scroll {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .log-scroll {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const canvas = document.getElementById("hud-sparkline") as HTMLCanvasElement | null;
+  const ctx = canvas?.getContext("2d") ?? null;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (canvas && ctx) {
+    const w = canvas.width;
+    const h = canvas.height;
+    let values = Array.from({ length: 40 }, () => 0.5);
+
+    function step() {
+      const last = values[values.length - 1];
+      const next = Math.min(0.95, Math.max(0.15, last + (Math.random() - 0.5) * 0.18));
+      values = [...values.slice(1), next];
+    }
+
+    function render() {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, w, h);
+      ctx.beginPath();
+      ctx.strokeStyle = "#22d3ee";
+      ctx.lineWidth = 1.4;
+      values.forEach((v, i) => {
+        const x = (i / (values.length - 1)) * w;
+        const y = h - v * h;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+    }
+
+    render();
+    if (!reduceMotion) {
+      setInterval(() => {
+        step();
+        render();
+      }, 600);
+    }
+  }
+</script>

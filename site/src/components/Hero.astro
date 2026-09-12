@@ -3,49 +3,157 @@ import { Image } from "astro:assets";
 import meImage from "../assets/me.jpg";
 
 const years = new Date().getFullYear() - 2016;
+
+const stats = [
+  { value: String(years).padStart(2, "0"), label: "Years in orbit" },
+  { value: "20+", label: "Missions shipped" },
+  { value: "05", label: "Crews served" },
+];
 ---
 
-<section id="top" class="scroll-mt-24 pt-14 pb-16 sm:pt-20 sm:pb-20">
-  <div class="flex items-start gap-5 sm:gap-6">
+<section
+  id="top"
+  class="relative flex min-h-screen scroll-mt-24 flex-col items-center justify-center px-6 pt-28 pb-16 text-center"
+>
+  <p
+    class="reveal font-mono text-xs tracking-[0.2em] text-cyan/80"
+    style="transition-delay: 0ms"
+  >
+    OBSERVATION DECK · BENGALURU, INDIA
+  </p>
+
+  <div
+    class="reveal relative mt-6 h-40 w-40 sm:h-48 sm:w-48"
+    style="transition-delay: 80ms"
+  >
+    <div
+      class="absolute inset-0 -z-10 rounded-full bg-cyan/20 blur-2xl animate-pulse-glow"
+    >
+    </div>
+
+    <svg
+      viewBox="0 0 200 200"
+      class="animate-orbit absolute inset-0 h-full w-full text-cyan/30"
+      aria-hidden="true"
+    >
+      <circle
+        cx="100"
+        cy="100"
+        r="96"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1"
+        stroke-dasharray="2 10"
+      />
+      <circle cx="100" cy="4" r="3.5" class="fill-cyan" />
+    </svg>
+    <svg
+      viewBox="0 0 200 200"
+      class="animate-orbit-slow absolute inset-0 h-full w-full text-violet/30"
+      aria-hidden="true"
+    >
+      <circle
+        cx="100"
+        cy="100"
+        r="88"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1"
+        stroke-dasharray="1 8"
+      />
+      <circle cx="182" cy="100" r="2.5" class="fill-violet" />
+    </svg>
+
     <Image
       src={meImage}
       alt="Hitesh Regar"
-      width={88}
-      height={88}
-      class="mt-1 h-16 w-16 shrink-0 rounded-md object-cover sm:h-[88px] sm:w-[88px]"
+      width={132}
+      height={132}
+      class="absolute inset-0 m-auto h-28 w-28 rounded-full border-2 border-cyan/40 object-cover shadow-[0_0_40px_rgba(34,211,238,0.25)] sm:h-32 sm:w-32"
     />
-    <div>
-      <h1 class="font-display text-3xl font-semibold text-ink sm:text-4xl">
-        Hitesh Regar
-      </h1>
-      <p class="mt-1.5 text-[1.05rem] text-ink-muted">
-        Senior Full-Stack Software Engineer, Gurugram, India
-      </p>
-    </div>
   </div>
 
-  <p class="mt-8 max-w-[640px] text-[1.05rem] leading-[1.75] text-ink">
-    I've spent the last {years} years building the systems marketplaces run on
-    — catalog and pricing tools at <span class="text-ink">Shopclues</span>,
-    bidding and marketplace platforms at <span class="text-ink">Emtex
-    Engineering</span>. Currently working across Django, Angular, and Go, with
-    a standing interest in the machine-learning side of classification and
-    pricing problems.
+  <h1
+    class="reveal mt-7 bg-gradient-to-r from-white via-cyan-100 to-white bg-clip-text font-display text-5xl font-bold text-transparent sm:text-7xl"
+    style="transition-delay: 140ms"
+  >
+    Hitesh Regar
+  </h1>
+
+  <p
+    class="reveal mt-4 font-display text-lg text-ink-muted sm:text-xl"
+    style="transition-delay: 200ms"
+  >
+    Senior Full-Stack Software Engineer
   </p>
 
-  <div class="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+  <p
+    class="reveal mt-6 max-w-[600px] text-[1.05rem] leading-[1.75] text-ink-muted"
+    style="transition-delay: 260ms"
+  >
+    I've spent the last {years} years across e-commerce and high-frequency
+    trading — catalog, pricing, and logistics systems at ShopClues and
+    Industrybuying.com, risk-management and trading-analytics tooling for a
+    quantitative trading firm. Currently a senior full-stack engineer at
+    SurveyMonkey, working across Python, Django, Go, and React.
+  </p>
+
+  <div
+    class="reveal mt-9 flex flex-wrap items-center justify-center gap-4"
+    style="transition-delay: 320ms"
+  >
     <a
       href="mailto:haikenthk@gmail.com"
-      class="text-teal underline decoration-teal/40 underline-offset-4 hover:decoration-teal"
+      data-magnetic
+      data-cursor="SEND"
+      class="rounded-full bg-gradient-to-r from-cyan to-violet px-7 py-3 text-sm font-semibold text-void shadow-[0_0_30px_rgba(34,211,238,0.35)] transition-transform hover:-translate-y-0.5"
     >
-      haikenthk@gmail.com
+      Open a channel
     </a>
     <a
       href="/haikent.pdf"
-      class="text-teal underline decoration-teal/40 underline-offset-4 hover:decoration-teal"
+      data-magnetic
+      data-cursor="GET"
+      class="glass-panel rounded-full px-7 py-3 text-sm font-semibold text-ink transition-transform hover:-translate-y-0.5"
     >
       Download résumé
     </a>
-    <span class="text-ink-muted">NIT Jalandhar, Class of 2016</span>
   </div>
+
+  <div
+    class="reveal glass-panel mt-14 grid w-full max-w-[520px] grid-cols-3 divide-x divide-white/10 rounded-2xl"
+    style="transition-delay: 380ms"
+  >
+    {
+      stats.map((stat) => (
+        <div class="px-4 py-5 text-center">
+          <p class="font-mono text-2xl font-medium text-cyan sm:text-3xl">
+            {stat.value}
+          </p>
+          <p class="mt-1 text-[0.7rem] text-ink-muted sm:text-xs">
+            {stat.label}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+
+  <a
+    href="#about"
+    aria-label="Scroll to About"
+    class="reveal mt-10 flex flex-col items-center gap-2 text-ink-muted transition-colors hover:text-cyan"
+    style="transition-delay: 440ms"
+  >
+    <span class="font-mono text-[0.65rem] tracking-widest">SCROLL</span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      class="h-4 w-4 animate-bounce"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m0 0-5-5m5 5 5-5" />
+    </svg>
+  </a>
 </section>

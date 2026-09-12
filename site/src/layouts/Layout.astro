@@ -1,5 +1,11 @@
 ---
 import "../styles/global.css";
+import Starscape from "../components/Starscape.astro";
+import EarthHorizon from "../components/EarthHorizon.astro";
+import Cursor from "../components/Cursor.astro";
+import ScrollProgress from "../components/ScrollProgress.astro";
+import BootSequence from "../components/BootSequence.astro";
+import HudSidebars from "../components/HudSidebars.astro";
 
 interface Props {
   title?: string;
@@ -13,12 +19,13 @@ const {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#05060c" />
 
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -26,23 +33,73 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-
-    <script is:inline>
-      (function () {
-        try {
-          var stored = localStorage.getItem("theme");
-          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-          if (stored === "dark" || (!stored && prefersDark)) {
-            document.documentElement.classList.add("dark");
-          }
-        } catch (e) {}
-      })();
-    </script>
   </head>
-  <body class="font-body antialiased">
+  <body class="relative font-body antialiased">
+    <BootSequence />
+    <Starscape />
+    <EarthHorizon />
+    <HudSidebars />
+    <Cursor />
+    <ScrollProgress />
     <slot />
+
+    <script>
+      // Plain scroll-position check rather than IntersectionObserver: a fast
+      // or instant scroll (keyboard End, scrollbar drag) can skip the frames
+      // IntersectionObserver samples on, leaving content stuck invisible.
+      // Checking geometry directly on every scroll/resize event can't miss.
+      const revealEls = Array.from(document.querySelectorAll(".reveal"));
+      let pending = revealEls.filter((el) => !el.classList.contains("is-visible"));
+      let ticking = false;
+
+      function checkReveal() {
+        const threshold = window.innerHeight - 60;
+        pending = pending.filter((el) => {
+          if (el.getBoundingClientRect().top >= threshold) return true;
+          el.classList.add("is-visible");
+          return false;
+        });
+        ticking = false;
+      }
+
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(checkReveal);
+      }
+
+      checkReveal();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll);
+
+      // Magnetic buttons: nudge toward the cursor within a radius, spring back on leave.
+      const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (canHover && !reduceMotion) {
+        const magnets = Array.from(document.querySelectorAll<HTMLElement>("[data-magnetic]"));
+        const radius = 90;
+        const pull = 0.35;
+
+        window.addEventListener("pointermove", (event) => {
+          for (const el of magnets) {
+            const rect = el.getBoundingClientRect();
+            const cx = rect.left + rect.width / 2;
+            const cy = rect.top + rect.height / 2;
+            const dx = event.clientX - cx;
+            const dy = event.clientY - cy;
+            const distance = Math.hypot(dx, dy);
+            if (distance < radius) {
+              el.style.transform = `translate(${dx * pull}px, ${dy * pull}px)`;
+            } else {
+              el.style.transform = "";
+            }
+          }
+        });
+      }
+    </script>
   </body>
 </html>

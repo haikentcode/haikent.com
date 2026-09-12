@@ -1,75 +1,228 @@
 ---
+import { Image } from "astro:assets";
+import meImage from "../assets/me.jpg";
 import SectionMark from "./SectionMark.astro";
 
 const skillGroups = [
   {
     label: "Languages",
-    items: ["Python", "Java", "Go", "C", "C++", "PHP", "JavaScript", "Kotlin"],
+    color: "var(--color-cyan)",
+    items: [
+      { name: "Python", detail: "Used at Delhivery, ShopClues, and SurveyMonkey" },
+      { name: "Java", detail: "Used on ShopClues' catalog systems" },
+      { name: "Go", detail: "One of my most-used languages day to day" },
+      { name: "C", detail: "Systems fundamentals, from college onward" },
+      { name: "C++", detail: "Systems fundamentals, from college onward" },
+      { name: "PHP", detail: "Powers the backend of this site" },
+      { name: "JavaScript", detail: "Every front end I've shipped, one way or another" },
+      { name: "Kotlin", detail: "Explored for Android side projects" },
+    ],
   },
   {
     label: "Frameworks",
+    color: "var(--color-violet)",
     items: [
-      "Django",
-      "Flask",
-      "Angular (NgRx/Store)",
-      "Spring / Hibernate",
-      "Bootstrap",
+      { name: "Django", detail: "Backend at ShopClues, Industrybuying.com, APT Portfolio, and Delhivery" },
+      { name: "DRF", detail: "Django REST Framework, for APT Portfolio's trading APIs" },
+      { name: "Flask", detail: "Lightweight services and internal tools" },
+      { name: "React", detail: "Used at APT Portfolio's trading dashboard" },
+      { name: "Redux", detail: "Paired with React at APT Portfolio" },
+      { name: "Angular (NgRx/Store)", detail: "Used on Industrybuying.com's B2B platform" },
+      { name: "AsyncIO", detail: "Used at APT Portfolio for async trading services" },
     ],
   },
   {
     label: "Data & ML",
+    color: "var(--color-emerald)",
     items: [
-      "NumPy",
-      "Pandas",
-      "scikit-learn",
-      "TensorFlow",
-      "OpenCV",
-      "Jupyter",
+      { name: "NumPy", detail: "Pricing and classification models at ShopClues" },
+      { name: "Pandas", detail: "Pricing and classification models at ShopClues" },
+      { name: "scikit-learn", detail: "Product classification and price prediction at ShopClues" },
+      { name: "TensorFlow", detail: "Weight-prediction models at ShopClues" },
+      { name: "OpenCV", detail: "Face recognition in digitalEye, a side project" },
     ],
   },
   {
     label: "Infra & data",
-    items: ["MySQL", "MongoDB", "Neo4j", "RabbitMQ", "Kafka"],
+    color: "var(--color-amber)",
+    items: [
+      { name: "AWS", detail: "Current infra at SurveyMonkey" },
+      { name: "MySQL", detail: "Relational storage across most projects" },
+      { name: "MongoDB", detail: "Catalog data at ShopClues" },
+      { name: "RabbitMQ", detail: "Async processing at ShopClues" },
+      { name: "Kafka", detail: "Event streaming and messaging" },
+      { name: "Protobuf", detail: "Trading-system messaging at APT Portfolio" },
+    ],
   },
 ];
+
+const defaultPrompt = "hover or tap a skill to inspect";
 ---
 
-<section class="pb-16 sm:pb-20">
-  <SectionMark label="About" id="about" />
+<section class="relative mx-auto flex min-h-screen max-w-[1100px] flex-col justify-center px-6 py-24">
+  <SectionMark label="Crew Log" eyebrow="ABOUT" id="about" color="var(--color-cyan)" />
 
-  <p class="max-w-[640px] text-[1.05rem] leading-[1.75] text-ink-muted">
-    I graduated in Computer Science and Engineering from Dr B. R. Ambedkar
-    NIT Jalandhar, and started out solving a vendor SKU-coding problem as an
-    intern at Delhivery. Since then I've built product-classification and
-    price-prediction algorithms for Shopclues' catalog team, and marketplace
-    and bidding tooling at Emtex Engineering. Outside of work, I play
-    <a
-      href="https://www.youtube.com/watch?v=r44nr4Hsg78"
-      target="_blank"
-      rel="noopener"
-      class="text-teal underline decoration-teal/40 underline-offset-4 hover:decoration-teal"
-      >guitar</a
+  <div class="reveal glass-panel rounded-3xl p-6 sm:p-10">
+    <div
+      class="flex flex-wrap items-center gap-5 border-b border-white/10 pb-6"
     >
-    and
-    <a
-      href="https://www.youtube.com/watch?v=6DobjdM8Mrg"
-      target="_blank"
-      rel="noopener"
-      class="text-teal underline decoration-teal/40 underline-offset-4 hover:decoration-teal"
-      >piano</a
-    >, and tinker with small IoT builds.
-  </p>
+      <Image
+        src={meImage}
+        alt="Hitesh Regar"
+        width={64}
+        height={64}
+        class="h-14 w-14 shrink-0 rounded-full border border-cyan/30 object-cover"
+      />
+      <div>
+        <p class="font-mono text-[0.65rem] tracking-[0.15em] text-cyan/80">
+          SENIOR FULL-STACK ENGINEER
+        </p>
+        <p class="mt-1 text-xs text-ink-muted">Bengaluru, India</p>
+      </div>
 
-  <dl class="mt-10 grid gap-5 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-6">
-    {
-      skillGroups.map((group) => (
+      <div class="ml-auto flex flex-wrap gap-x-8 gap-y-3">
         <div>
-          <dt class="text-sm font-medium text-ink">{group.label}</dt>
-          <dd class="mt-1.5 text-sm leading-[1.7] text-ink-muted">
-            {group.items.join(", ")}
-          </dd>
+          <p class="font-mono text-[0.6rem] tracking-[0.15em] text-ink-muted/70">
+            EXPERIENCE
+          </p>
+          <p class="mt-0.5 text-sm text-ink">10+ years</p>
         </div>
-      ))
-    }
-  </dl>
+        <div>
+          <p class="font-mono text-[0.6rem] tracking-[0.15em] text-ink-muted/70">
+            DOMAINS
+          </p>
+          <p class="mt-0.5 text-sm text-ink">E-commerce &amp; HFT</p>
+        </div>
+        <div>
+          <p class="font-mono text-[0.6rem] tracking-[0.15em] text-ink-muted/70">
+            OFF-DUTY
+          </p>
+          <p class="mt-0.5 text-sm text-ink">Guitar, piano</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="mt-6 text-[1.05rem] leading-[1.8] text-ink-muted">
+        I hold a degree in Computer Science and Engineering from Dr B. R.
+        Ambedkar NIT Jalandhar. Over the past decade, I've worked across
+        e-commerce and high-frequency trading — building catalog, pricing,
+        and logistics systems at{" "}
+        <span class="font-medium" style="color: var(--color-emerald)">
+          ShopClues
+        </span>{" "}
+        and{" "}
+        <span class="font-medium" style="color: var(--color-rose)">
+          Industrybuying.com
+        </span>
+        , and risk-management and trading-analytics tooling at{" "}
+        <span class="font-medium" style="color: var(--color-violet)">
+          APT Portfolio
+        </span>, a quantitative trading firm. I'm currently a Senior
+        Full-Stack Engineer at{" "}
+        <span class="font-medium" style="color: var(--color-cyan)">
+          SurveyMonkey
+        </span>
+        . Outside of work, I play{" "}
+        <a
+          href="https://www.youtube.com/watch?v=r44nr4Hsg78"
+          target="_blank"
+          rel="noopener"
+          class="font-medium text-cyan hover:underline"
+        >
+          guitar
+        </a>{" "}
+        and{" "}
+        <a
+          href="https://www.youtube.com/watch?v=6DobjdM8Mrg"
+          target="_blank"
+          rel="noopener"
+          class="font-medium text-cyan hover:underline"
+        >
+          piano
+        </a>, and build small IoT projects.
+    </p>
+
+    <div class="mt-8 grid gap-5 sm:grid-cols-2">
+      {
+        skillGroups.map((group) => (
+          <div class="rounded-2xl border border-white/10 bg-white/[0.02] p-5">
+            <div class="flex items-center gap-2">
+              <span
+                class="h-1.5 w-1.5 rounded-full"
+                style={`background-color: ${group.color}`}
+              />
+              <h3
+                class="font-mono text-[0.7rem] tracking-[0.15em]"
+                style={`color: ${group.color}`}
+              >
+                {group.label.toUpperCase()}
+              </h3>
+            </div>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <button
+                  type="button"
+                  class="skill-pill rounded-full px-3 py-1 text-xs font-medium transition-transform duration-150 hover:-translate-y-0.5"
+                  data-detail={item.detail}
+                  data-name={item.name}
+                  data-color={group.color}
+                  style={`background-color: color-mix(in srgb, ${group.color} 14%, transparent); color: ${group.color}; border: 1px solid color-mix(in srgb, ${group.color} 30%, transparent)`}
+                >
+                  {item.name}
+                </button>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-6 flex items-center gap-3 rounded-2xl border border-white/10 bg-void/60 px-4 py-3">
+      <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-cyan animate-pulse-glow"></span>
+      <p id="skill-readout" class="font-mono text-xs text-ink-muted">
+        <span class="text-cyan/70">&gt;</span> {defaultPrompt}
+      </p>
+    </div>
+  </div>
 </section>
+
+<script define:vars={{ defaultPrompt }}>
+  const pills = Array.from(document.querySelectorAll(".skill-pill"));
+  const readout = document.getElementById("skill-readout");
+  let pinned = null;
+
+  function render(name, detail, color) {
+    if (!readout) return;
+    if (!name) {
+      readout.innerHTML = `<span class="text-cyan/70">&gt;</span> ${defaultPrompt}`;
+      return;
+    }
+    readout.innerHTML = `<span style="color:${color}">&gt; ${name.toUpperCase()}</span> — ${detail}`;
+  }
+
+  pills.forEach((pill) => {
+    const { name, detail, color } = pill.dataset;
+
+    pill.addEventListener("pointerenter", () => {
+      if (!pinned) render(name, detail, color);
+    });
+    pill.addEventListener("pointerleave", () => {
+      if (!pinned) render(null, null, null);
+    });
+    pill.addEventListener("click", () => {
+      const isSame = pinned === pill;
+      pills.forEach((p) => p.style.outline = "");
+      if (isSame) {
+        pinned = null;
+        render(null, null, null);
+      } else {
+        pinned = pill;
+        pill.style.outline = `1px solid ${color}`;
+        render(name, detail, color);
+      }
+    });
+    pill.addEventListener("focus", () => {
+      if (!pinned) render(name, detail, color);
+    });
+  });
+</script>

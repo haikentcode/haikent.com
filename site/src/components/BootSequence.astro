@@ -1,0 +1,59 @@
+---
+const lines = [
+  "> INITIALIZING OBSERVATION DECK",
+  "> CALIBRATING STARFIELD...",
+  "> LINK ESTABLISHED — WELCOME",
+];
+---
+
+<div
+  id="boot-sequence"
+  class="pointer-events-none fixed inset-0 z-[60] grid place-items-center bg-void font-mono text-sm text-cyan"
+  aria-hidden="true"
+>
+  <div class="space-y-2 text-left">
+    {
+      lines.map((line, i) => (
+        <p
+          class="boot-line opacity-0"
+          style={`animation: line-in 500ms ease-out forwards; animation-delay: ${300 + i * 420}ms`}
+        >
+          {line}
+        </p>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  #boot-sequence {
+    opacity: 1;
+    visibility: visible;
+    animation: boot-out 500ms ease forwards;
+    animation-delay: 1900ms;
+  }
+
+  @keyframes line-in {
+    from {
+      opacity: 0;
+      transform: translateX(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes boot-out {
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #boot-sequence {
+      display: none;
+    }
+  }
+</style>

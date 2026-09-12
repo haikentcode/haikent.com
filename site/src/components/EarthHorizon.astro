@@ -1,0 +1,138 @@
+---
+const trees = [
+  { x: 210, scale: 1 },
+  { x: 260, scale: 0.75 },
+  { x: 940, scale: 0.85 },
+  { x: 1010, scale: 1.1 },
+  { x: 1330, scale: 0.7 },
+];
+
+const birds = [
+  { y: 40, duration: "22s", delay: "-4s" },
+  { y: 70, duration: "26s", delay: "-14s" },
+  { y: 25, duration: "30s", delay: "-2s" },
+];
+
+const notes = [
+  { x: 218, delay: "0s" },
+  { x: 250, delay: "1.6s" },
+  { x: 1015, delay: "0.8s" },
+];
+---
+
+<div
+  class="pointer-events-none fixed inset-x-0 bottom-0 -z-10 h-[20vh] max-h-[230px] min-h-[150px] overflow-hidden"
+  aria-hidden="true"
+>
+  <svg
+    viewBox="0 0 1600 320"
+    preserveAspectRatio="none"
+    class="h-full w-full"
+  >
+    <defs>
+      <linearGradient id="hillBack" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0e2a2f" />
+        <stop offset="100%" stop-color="#05060c" />
+      </linearGradient>
+      <linearGradient id="hillFront" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0a1f1a" />
+        <stop offset="100%" stop-color="#05060c" />
+      </linearGradient>
+      <linearGradient id="seaGradient" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0b2e3a" />
+        <stop offset="100%" stop-color="#05060c" />
+      </linearGradient>
+    </defs>
+
+    <!-- back hill -->
+    <path
+      d="M0,190 C220,120 380,175 620,120 C860,65 1080,150 1320,105 C1440,84 1540,115 1600,100 L1600,320 L0,320 Z"
+      fill="url(#hillBack)"
+      opacity="0.75"
+    />
+
+    <!-- birds, sky band above the ridge -->
+    {
+      birds.map((bird) => (
+        <g
+          class="animate-bird"
+          style={`animation-duration: ${bird.duration}; animation-delay: ${bird.delay}`}
+          transform={`translate(0, ${bird.y})`}
+        >
+          <path
+            d="M0,0 Q8,-7 16,0 Q24,-7 32,0"
+            fill="none"
+            stroke="#a5f3fc"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            opacity="0.7"
+          />
+        </g>
+      ))
+    }
+
+    <!-- front hill + ridge highlight -->
+    <path
+      d="M0,230 C260,175 420,215 700,170 C960,128 1160,200 1420,160 C1500,148 1560,168 1600,158 L1600,320 L0,320 Z"
+      fill="url(#hillFront)"
+    />
+    <path
+      d="M0,230 C260,175 420,215 700,170 C960,128 1160,200 1420,160 C1500,148 1560,168 1600,158"
+      fill="none"
+      stroke="#34d399"
+      stroke-width="1.2"
+      opacity="0.35"
+    />
+
+    <!-- trees along the ridge -->
+    {
+      trees.map((tree) => (
+        <g transform={`translate(${tree.x}, 205) scale(${tree.scale})`}>
+          <rect x="-2" y="16" width="4" height="10" fill="#0a1f1a" />
+          <path d="M0,-22 L14,18 L-14,18 Z" fill="#0e2f22" />
+          <path d="M0,-22 L14,18 L-14,18 Z" fill="none" stroke="#34d399" stroke-width="0.6" opacity="0.3" />
+        </g>
+      ))
+    }
+
+    <!-- drifting music notes near the trees -->
+    {
+      notes.map((note) => (
+        <text
+          class="animate-note"
+          x={note.x}
+          y="195"
+          font-size="16"
+          fill="#fbbf24"
+          style={`animation-delay: ${note.delay}`}
+        >
+          &#9834;
+        </text>
+      ))
+    }
+
+    <!-- sea -->
+    <rect x="0" y="270" width="1600" height="50" fill="url(#seaGradient)" />
+    <path
+      class="animate-wave"
+      d="M0,276 Q40,270 80,276 T160,276 T240,276 T320,276 T400,276 T480,276 T560,276 T640,276 T720,276 T800,276 T880,276 T960,276 T1040,276 T1120,276 T1200,276 T1280,276 T1360,276 T1440,276 T1520,276 T1600,276"
+      fill="none"
+      stroke="#67e8f9"
+      stroke-width="1"
+    />
+    <path
+      class="animate-wave"
+      d="M0,290 Q40,284 80,290 T160,290 T240,290 T320,290 T400,290 T480,290 T560,290 T640,290 T720,290 T800,290 T880,290 T960,290 T1040,290 T1120,290 T1200,290 T1280,290 T1360,290 T1440,290 T1520,290 T1600,290"
+      fill="none"
+      stroke="#22d3ee"
+      stroke-width="1"
+      style="animation-delay: -2s"
+    />
+  </svg>
+
+  <div
+    class="absolute inset-0"
+    style="background: linear-gradient(to top, rgba(5,6,12,0.6), rgba(5,6,12,0) 55%);"
+  >
+  </div>
+</div>
