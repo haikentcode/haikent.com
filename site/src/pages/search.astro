@@ -143,7 +143,26 @@ import Layout from "../layouts/Layout.astro";
   import { getDocument, GlobalWorkerOptions } from "pdfjs-dist";
   import pdfWorkerUrl from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 
-  GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
+  // Some hosts serve .mjs with the wrong MIME type (observed: text/plain on
+  // Hostinger's CDN), which browsers reject for module scripts regardless
+  // of any .htaccess override. Fetching the worker as text and wrapping it
+  // in a Blob with an explicit type sidesteps the server's headers
+  // entirely — the browser only sees what the Blob claims to be.
+  let workerReady: Promise<void> | null = null;
+  function ensureWorkerReady(): Promise<void> {
+    if (!workerReady) {
+      workerReady = fetch(pdfWorkerUrl)
+        .then((res) => res.text())
+        .then((code) => {
+          const blob = new Blob([code], { type: "text/javascript" });
+          GlobalWorkerOptions.workerSrc = URL.createObjectURL(blob);
+        })
+        .catch(() => {
+          GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
+        });
+    }
+    return workerReady;
+  }
 
   const DEVANAGARI = /[ऀ-ॿ]/;
   const LATIN_WORD = /^[a-zA-Z]+$/;
@@ -377,6 +396,7 @@ import Layout from "../layouts/Layout.astro";
     if (nextBtn) nextBtn.disabled = true;
 
     try {
+      await ensureWorkerReady();
       currentDoc = await getDocument({ url: pdfUrl(pdfName) }).promise;
       totalPages = currentDoc.numPages;
       currentPage = Math.min(Math.max(pageNumber, 1), totalPages);
