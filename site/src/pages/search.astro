@@ -350,6 +350,7 @@ import Layout from "../layouts/Layout.astro";
   let currentPage = 1;
   let totalPages = 0;
   let renderToken = 0;
+  let openToken = 0;
 
   function pdfUrl(name: string) {
     return `/static/media/pdf/${encodeURIComponent(name)}`;
@@ -386,6 +387,7 @@ import Layout from "../layouts/Layout.astro";
 
   async function openViewer(pdfName: string, pageNumber: number) {
     if (!modal || !modalTitle || !modalStatus || !canvas || !downloadLink) return;
+    const myToken = ++openToken;
     modal.classList.remove("hidden");
     modal.classList.add("flex");
     modalTitle.textContent = pdfName;
@@ -397,13 +399,18 @@ import Layout from "../layouts/Layout.astro";
 
     try {
       await ensureWorkerReady();
-      currentDoc = await getDocument({ url: pdfUrl(pdfName) }).promise;
-      totalPages = currentDoc.numPages;
+      if (myToken !== openToken) return; // a newer openViewer call has since taken over
+      const doc = await getDocument({ url: pdfUrl(pdfName) }).promise;
+      if (myToken !== openToken) return;
+      currentDoc = doc;
+      totalPages = doc.numPages;
       currentPage = Math.min(Math.max(pageNumber, 1), totalPages);
       updatePageControls();
       await renderPage(currentPage);
     } catch {
-      modalStatus.textContent = "> couldn't load this file — try opening it directly";
+      if (myToken === openToken) {
+        modalStatus.textContent = "> couldn't load this file — try opening it directly";
+      }
     }
   }
 
@@ -412,6 +419,7 @@ import Layout from "../layouts/Layout.astro";
     modal.classList.add("hidden");
     modal.classList.remove("flex");
     renderToken++;
+    openToken++;
     currentDoc = null;
   }
 
