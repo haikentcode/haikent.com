@@ -1,4 +1,10 @@
-# Some Apache configs don't map .mjs to a JS MIME type by default, which
-# makes browsers reject it as an ES module (strict MIME checking). Needed
-# for the pdfjs-dist worker used by the PDF Scopy search tool.
-AddType text/javascript .mjs
+# Some Apache configs map .mjs to text/plain by default, which makes
+# browsers reject it as an ES module (strict MIME checking). AddType alone
+# didn't override that on Hostinger, so force it explicitly. Needed for
+# the pdfjs-dist worker used by the PDF Scopy search tool.
+<IfModule mod_mime.c>
+  AddType text/javascript .mjs
+</IfModule>
+<FilesMatch "\.mjs$">
+  ForceType text/javascript
+</FilesMatch>
