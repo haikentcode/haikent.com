@@ -95,10 +95,21 @@
   let pulses: Pulse[] = [];
   let width = 0;
   let height = 0;
+  let lastResizeWidth = -1;
   const LINK_DISTANCE = 300;
+  // Mobile browsers fire "resize" as the URL bar auto-hides/shows during
+  // scroll, changing innerHeight but not innerWidth. Only rebuild the star
+  // field when the width actually changes (a real rotation/resize), so
+  // scrolling on mobile doesn't repeatedly reallocate every star/node.
+  const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
 
   function resize() {
     if (!canvas) return;
+    if (isCoarsePointer && window.innerWidth === lastResizeWidth) {
+      height = canvas.height = window.innerHeight;
+      return;
+    }
+    lastResizeWidth = window.innerWidth;
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
 
@@ -116,14 +127,18 @@
     // A sparse, always-drifting node graph — an ambient nod to a neural net
     // quietly training in the background. Scales with viewport area, so it
     // naturally fills the wide empty margins on large desktop screens.
-    const nodeCount = Math.min(46, Math.floor((width * height) / 42000));
-    nodes = Array.from({ length: nodeCount }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.12,
-      vy: (Math.random() - 0.5) * 0.12,
-    }));
-    pulses = [];
+    // Skipped on mobile: its O(n^2) link check plus shadowBlur every frame
+    // isn't worth the cost on a narrow viewport with no margins to fill.
+    if (!isCoarsePointer) {
+      const nodeCount = Math.min(46, Math.floor((width * height) / 42000));
+      nodes = Array.from({ length: nodeCount }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.12,
+        vy: (Math.random() - 0.5) * 0.12,
+      }));
+      pulses = [];
+    }
   }
 
   function drawNodeGraph() {
@@ -201,7 +216,7 @@
       ctx.fill();
     }
     ctx.globalAlpha = 1;
-    drawNodeGraph();
+    if (!isCoarsePointer) drawNodeGraph();
     if (!reduceMotion) requestAnimationFrame(draw);
   }
 
