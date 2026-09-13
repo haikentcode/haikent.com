@@ -102,6 +102,11 @@
   // field when the width actually changes (a real rotation/resize), so
   // scrolling on mobile doesn't repeatedly reallocate every star/node.
   const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+  // A weak desktop/laptop (few cores) has the same problem as mobile even
+  // with a mouse: this canvas's rAF loop competes with every other
+  // pointer-driven rAF loop (the custom cursor's, in particular) for the
+  // same 16ms frame budget, so a slow frame here delays the cursor too.
+  const isLowPower = isCoarsePointer || (navigator.hardwareConcurrency ?? 8) <= 4;
 
   function resize() {
     if (!canvas) return;
@@ -127,9 +132,10 @@
     // A sparse, always-drifting node graph — an ambient nod to a neural net
     // quietly training in the background. Scales with viewport area, so it
     // naturally fills the wide empty margins on large desktop screens.
-    // Skipped on mobile: its O(n^2) link check plus shadowBlur every frame
-    // isn't worth the cost on a narrow viewport with no margins to fill.
-    if (!isCoarsePointer) {
+    // Skipped on mobile and low-core hardware: its O(n^2) link check every
+    // frame isn't worth the cost on a narrow viewport with no margins to
+    // fill, or on hardware where it would visibly compete for frame time.
+    if (!isLowPower) {
       const nodeCount = Math.min(46, Math.floor((width * height) / 42000));
       nodes = Array.from({ length: nodeCount }, () => ({
         x: Math.random() * width,
@@ -173,10 +179,19 @@
       }
     }
 
-    ctx.globalAlpha = 1;
+    // A soft halo drawn as a second, larger low-alpha circle underneath —
+    // shadowBlur gives the same look but forces an extra blur-compositing
+    // pass every frame, which is the single most expensive thing this
+    // canvas was doing.
+    ctx.fillStyle = "#22d3ee";
+    ctx.globalAlpha = 0.25;
+    for (const node of nodes) {
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, 5, 0, Math.PI * 2);
+      ctx.fill();
+    }
     ctx.fillStyle = "#c7f9ff";
-    ctx.shadowColor = "#22d3ee";
-    ctx.shadowBlur = 12;
+    ctx.globalAlpha = 1;
     for (const node of nodes) {
       ctx.beginPath();
       ctx.arc(node.x, node.y, 2.6, 0, Math.PI * 2);
@@ -188,17 +203,18 @@
       if (pulse.t >= 1) return false;
       const x = pulse.from.x + (pulse.to.x - pulse.from.x) * pulse.t;
       const y = pulse.from.y + (pulse.to.y - pulse.from.y) * pulse.t;
-      ctx.globalAlpha = 1;
       ctx.fillStyle = "#67e8f9";
-      ctx.shadowColor = "#67e8f9";
-      ctx.shadowBlur = 14;
+      ctx.globalAlpha = 0.3;
+      ctx.beginPath();
+      ctx.arc(x, y, 4.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
       ctx.beginPath();
       ctx.arc(x, y, 2.4, 0, Math.PI * 2);
       ctx.fill();
       return true;
     });
 
-    ctx.shadowBlur = 0;
     ctx.globalAlpha = 1;
   }
 

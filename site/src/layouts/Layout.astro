@@ -88,14 +88,21 @@ const {
         const magnets = Array.from(document.querySelectorAll<HTMLElement>("[data-magnetic]"));
         const radius = 90;
         const pull = 0.35;
+        let pointerX = 0;
+        let pointerY = 0;
+        let magnetTicking = false;
 
-        window.addEventListener("pointermove", (event) => {
+        // getBoundingClientRect() forces a synchronous layout read; doing
+        // that per magnet on every raw pointermove (which can fire faster
+        // than the display's frame rate) is wasted work between frames.
+        // Coalesce to one pass per animation frame instead.
+        function applyMagnets() {
           for (const el of magnets) {
             const rect = el.getBoundingClientRect();
             const cx = rect.left + rect.width / 2;
             const cy = rect.top + rect.height / 2;
-            const dx = event.clientX - cx;
-            const dy = event.clientY - cy;
+            const dx = pointerX - cx;
+            const dy = pointerY - cy;
             const distance = Math.hypot(dx, dy);
             if (distance < radius) {
               el.style.transform = `translate(${dx * pull}px, ${dy * pull}px)`;
@@ -103,6 +110,15 @@ const {
               el.style.transform = "";
             }
           }
+          magnetTicking = false;
+        }
+
+        window.addEventListener("pointermove", (event) => {
+          pointerX = event.clientX;
+          pointerY = event.clientY;
+          if (magnetTicking) return;
+          magnetTicking = true;
+          requestAnimationFrame(applyMagnets);
         });
       }
     </script>
