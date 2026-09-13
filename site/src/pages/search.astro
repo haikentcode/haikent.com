@@ -239,25 +239,33 @@ import Layout from "../layouts/Layout.astro";
   // Expands the typed query with cross-script candidates so "kitab" also
   // searches किताब, and किताब also searches kitAb, without needing the
   // user to know which script the archive stores a given page in.
+  //
+  // Encodes one variant group per word position — "word,variant word,variant"
+  // — rather than flattening everything into one word list, so the backend
+  // can run order-preserving phrase alignment: each position keeps its own
+  // acceptable spellings instead of transliteration candidates turning into
+  // extra trailing words that would break phrase order.
   function expandQuery(raw: string): { query: string; terms: string[] } {
     const words = raw.trim().split(/\s+/).filter(Boolean);
-    const extras = new Set<string>();
+    const terms = new Set<string>(words);
 
-    for (const word of words) {
-      if (extras.size >= 20) break;
+    const positions = words.map((word) => {
+      const variants = new Set<string>([word]);
       const roman = romanize(word);
       if (roman) {
-        extras.add(roman);
-        continue;
+        variants.add(roman);
+        terms.add(roman);
+      } else {
+        for (const candidate of devanagariCandidates(word)) {
+          variants.add(candidate);
+          terms.add(candidate);
+          if (variants.size >= 8) break;
+        }
       }
-      for (const candidate of devanagariCandidates(word)) {
-        extras.add(candidate);
-        if (extras.size >= 20) break;
-      }
-    }
+      return [...variants].join(",");
+    });
 
-    const terms = [...words, ...extras];
-    return { query: terms.join(" "), terms };
+    return { query: positions.join(" "), terms: [...terms] };
   }
 
   const form = document.getElementById("search-form") as HTMLFormElement | null;
@@ -269,7 +277,7 @@ import Layout from "../layouts/Layout.astro";
     pdf_name: string;
     page_number: number;
     raw_text_data: string;
-    score: number;
+    relevance: number;
   };
 
   function escapeRegExp(text: string) {
@@ -307,6 +315,15 @@ import Layout from "../layouts/Layout.astro";
     status.textContent = `> ${data.length} match${data.length === 1 ? "" : "es"} found`;
 
     for (const item of data) {
+      // Tailwind's build-time scanner needs full class names to appear
+      // literally in source — a template-interpolated `bg-${x}/15` never
+      // gets its CSS generated, so the three combinations are spelled out.
+      const relevanceClasses =
+        item.relevance >= 90
+          ? "bg-emerald/15 text-emerald"
+          : item.relevance >= 70
+            ? "bg-cyan/15 text-cyan"
+            : "bg-amber/15 text-amber";
       const card = document.createElement("div");
       card.className = "glass-panel rounded-3xl p-5";
       card.innerHTML = `
@@ -314,7 +331,7 @@ import Layout from "../layouts/Layout.astro";
           <h3 class="text-sm font-semibold text-ink break-all">${escapeHtml(item.pdf_name)}</h3>
           <div class="flex shrink-0 gap-2">
             <span class="rounded-full bg-violet/15 px-2.5 py-0.5 font-mono text-[0.65rem] text-violet">PAGE ${item.page_number}</span>
-            <span class="rounded-full bg-cyan/15 px-2.5 py-0.5 font-mono text-[0.65rem] text-cyan">SCORE ${item.score}</span>
+            <span class="rounded-full ${relevanceClasses} px-2.5 py-0.5 font-mono text-[0.65rem]">${item.relevance}% MATCH</span>
           </div>
         </div>
         <div class="mt-3 max-h-48 overflow-y-auto rounded-xl border border-white/10 bg-void/40 p-3 text-sm leading-[1.7] text-ink-muted">
