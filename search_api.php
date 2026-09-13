@@ -191,13 +191,26 @@ try {
         $hasQueryWords = (bool) array_filter($queryVariantChars);
 
         if (!empty($likePatterns) && $hasQueryWords) {
+            // A plain "WHERE ... LIMIT N" with no ORDER BY is unsafe here:
+            // common words alone can match thousands of rows, and SQLite
+            // then just returns whichever N happen to come first in table
+            // order — silently dropping genuinely close matches that
+            // happen to sit later in the table. Ranking by how many of the
+            // query's LIKE patterns each row matches (cheap to compute, and
+            // a decent relevance proxy on its own) before the LIMIT ensures
+            // truncation drops the least-plausible candidates first.
             $conditions = implode(' OR ', array_fill(0, count($likePatterns), 'raw_text_data LIKE ?'));
+            $matchCount = implode(' + ', array_fill(0, count($likePatterns), '(raw_text_data LIKE ?)'));
             $stmt = $db->prepare(
                 "SELECT pdf_name, page_number, raw_text_data FROM pdf_text_data
-                 WHERE $conditions LIMIT " . CANDIDATE_LIMIT
+                 WHERE $conditions ORDER BY ($matchCount) DESC LIMIT " . CANDIDATE_LIMIT
             );
-            foreach ($likePatterns as $idx => $pattern) {
-                $stmt->bindValue($idx + 1, $pattern, SQLITE3_TEXT);
+            $idx = 1;
+            foreach ($likePatterns as $pattern) {
+                $stmt->bindValue($idx++, $pattern, SQLITE3_TEXT);
+            }
+            foreach ($likePatterns as $pattern) {
+                $stmt->bindValue($idx++, $pattern, SQLITE3_TEXT);
             }
             $res = $stmt->execute();
 
