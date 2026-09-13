@@ -137,22 +137,37 @@ try {
         // Deterministic literal substring match — every hit here is exact
         // by definition, so it's a single top relevance tier. Occurrence
         // count still breaks ties among multiple exact hits.
+        //
+        // The OCR'd text preserves the source PDF's original line-wrap
+        // points as literal newlines, so a phrase that wraps mid-sentence
+        // in the scan (e.g. "...ध्यान में\nकरना...") never matches a query
+        // typed with a normal space there. The SQL prefilter uses '%'
+        // between words so it's tolerant of whatever sits between them;
+        // normalize_text() then confirms a true whitespace-normalized
+        // match in PHP, so an inserted *word* (not just different
+        // whitespace) still correctly fails to match.
+        $normalizedExact = normalize_text($exactLine);
+        $words = preg_split('/\s+/u', $normalizedExact, -1, PREG_SPLIT_NO_EMPTY);
         $stmt = $db->prepare(
             "SELECT pdf_name, page_number, raw_text_data FROM pdf_text_data
-             WHERE raw_text_data LIKE :pattern LIMIT " . MAX_RESULTS
+             WHERE raw_text_data LIKE :pattern"
         );
-        $stmt->bindValue(':pattern', '%' . $exactLine . '%', SQLITE3_TEXT);
+        $stmt->bindValue(':pattern', '%' . implode('%', $words) . '%', SQLITE3_TEXT);
         $res = $stmt->execute();
         while ($row = $res->fetchArray(SQLITE3_ASSOC)) {
+            $normalizedRow = normalize_text($row['raw_text_data']);
+            $occurrences = substr_count($normalizedRow, $normalizedExact);
+            if ($occurrences === 0) continue;
             $results[] = [
                 'pdf_name' => $row['pdf_name'],
                 'page_number' => $row['page_number'],
                 'raw_text_data' => $row['raw_text_data'],
                 'relevance' => 100,
-                'occurrences' => substr_count($row['raw_text_data'], $exactLine),
+                'occurrences' => $occurrences,
             ];
         }
         usort($results, fn($a, $b) => $b['occurrences'] - $a['occurrences']);
+        $results = array_slice($results, 0, MAX_RESULTS);
         foreach ($results as &$r) unset($r['occurrences']);
         unset($r);
 
