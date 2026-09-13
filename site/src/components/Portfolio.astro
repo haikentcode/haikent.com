@@ -6,9 +6,9 @@ import guitarImage from "../assets/portfolio-2.jpg";
 import pianoImage from "../assets/portfolio-3.jpg";
 
 const categoryColors: Record<string, string> = {
-  IT: "var(--color-cyan)",
-  Music: "var(--color-rose)",
   Tools: "var(--color-amber)",
+  IT: "var(--color-cyan)",
+  Hobby: "var(--color-rose)",
 };
 
 const items = [
@@ -87,7 +87,7 @@ const items = [
   },
   {
     title: "Guitar",
-    category: "Music",
+    category: "Hobby",
     range: "",
     description: "An acoustic cover.",
     tags: [],
@@ -96,7 +96,7 @@ const items = [
   },
   {
     title: "Piano",
-    category: "Music",
+    category: "Hobby",
     range: "",
     description: "Beethoven's Ode to Joy, Symphony No. 9.",
     tags: [],
@@ -105,7 +105,7 @@ const items = [
   },
 ];
 
-const filters = ["All", "IT", "Tools", "Music"];
+const filters = ["Tools", "IT", "Hobby"];
 ---
 
 <section class="relative mx-auto flex min-h-screen max-w-[1100px] flex-col justify-center px-6 py-24">
@@ -140,7 +140,13 @@ const filters = ["All", "IT", "Tools", "Music"];
         const color = categoryColors[item.category];
         const Wrapper = item.link ? "a" : "div";
         return (
-          <div class="work-row reveal" data-category={item.category}>
+          <div
+            class:list={[
+              "work-row reveal",
+              item.category !== filters[0] && "hidden",
+            ]}
+            data-category={item.category}
+          >
             <Wrapper
               href={item.link ?? undefined}
               target={item.link ? "_blank" : undefined}
@@ -255,8 +261,7 @@ const filters = ["All", "IT", "Tools", "Music"];
 
       const filter = button.dataset.filter;
       rows.forEach((row) => {
-        const show = filter === "All" || row.dataset.category === filter;
-        row.classList.toggle("hidden", !show);
+        row.classList.toggle("hidden", row.dataset.category !== filter);
       });
     });
   });
