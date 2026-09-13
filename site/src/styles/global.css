@@ -73,6 +73,25 @@ body {
   transform: translateY(0);
 }
 
+/* backdrop-filter blur is expensive to composite on mobile GPUs and causes
+   scroll stutter with a visible blank flash; drop it below desktop widths
+   and fall back to a near-opaque background that reads the same. */
+@media (max-width: 768px) {
+  .glass-panel {
+    background: linear-gradient(
+      165deg,
+      rgba(18, 22, 38, 0.92),
+      rgba(10, 12, 22, 0.88)
+    );
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .reveal {
+    transition-duration: 450ms;
+  }
+}
+
 @keyframes nebula-drift {
   0%, 100% {
     transform: translate(0, 0) scale(1);

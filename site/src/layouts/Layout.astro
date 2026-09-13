@@ -54,9 +54,14 @@ const {
       const revealEls = Array.from(document.querySelectorAll(".reveal"));
       let pending = revealEls.filter((el) => !el.classList.contains("is-visible"));
       let ticking = false;
+      const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+      // On touch devices, fire well before a section enters the viewport so
+      // the fade-in finishes by the time the user actually scrolls to it,
+      // instead of scrolling into a blank section mid-animation.
+      const leadMargin = isCoarsePointer ? 240 : -60;
 
       function checkReveal() {
-        const threshold = window.innerHeight - 60;
+        const threshold = window.innerHeight + leadMargin;
         pending = pending.filter((el) => {
           if (el.getBoundingClientRect().top >= threshold) return true;
           el.classList.add("is-visible");
