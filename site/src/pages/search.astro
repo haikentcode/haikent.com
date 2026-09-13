@@ -197,6 +197,14 @@ import Layout from "../layouts/Layout.astro";
   function devanagariCandidates(word: string): string[] {
     if (!LATIN_WORD.test(word)) return [];
 
+    // ITRANS is a case-sensitive scheme where capitals carry their own
+    // meaning (e.g. "A" is a long आ, distinct from short "a" = अ) — but a
+    // casually typed query like "Bhakti" only capitalizes it because it's
+    // the first word, not to invoke that convention. Left as-is, Sanscript
+    // fails to recognize "Bh" as the भ digraph at all and leaves the "B"
+    // untranslated. Lowercasing first means casing never changes the result.
+    word = word.toLowerCase();
+
     const positions: number[] = [];
     for (let i = 0; i < word.length; i++) {
       const c = word[i].toLowerCase();
